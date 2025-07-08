@@ -11,7 +11,9 @@ const PORT = process.env.PORT || 5000;
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://thecuriouscatpub.netlify.app'
+}));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
@@ -44,7 +46,7 @@ app.post('/api/book', async (req, res) => {
     console.log('✅ Confirmation email sent.');
     res.status(200).json({ message: 'Booking successful and confirmation email sent!' });
   } catch (error) {
-    console.error('❌ Email sending failed:', error.toString());
+    console.error('❌ Email sending failed:', error.response?.body || error.toString());
     res.status(500).json({ message: 'Booking failed. Please try again later.' });
   }
 });
