@@ -1,58 +1,146 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pub Booking</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            padding: 2rem;
-            max-width: 600px;
-            margin: auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Curious Cat Pub – Table Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #1c1c1c;
+      color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+    header {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #ffcc00;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
 
-        input, select, textarea, button {
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
-    </style>
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 500px;
+      background: #2a2a2a;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    }
+
+    input, textarea, button {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    input, textarea {
+      background: #3a3a3a;
+      color: #f8f8f8;
+    }
+
+    button {
+      background: #ffcc00;
+      color: #1c1c1c;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #e6b800;
+    }
+
+    .confirmation {
+      margin-top: 1rem;
+      color: #00ff99;
+      font-weight: bold;
+    }
+
+    .error {
+      color: #ff6666;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #aaa;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <h1>Book a Table</h1>
-    <form id="bookingForm">
-        <input type="text" name="name" placeholder="Your name" required />
-        <input type="email" name="email" placeholder="Your email" required />
-        <input type="date" name="date" required />
-        <input type="time" name="time" required />
-        <input type="number" name="partySize" placeholder="Party size" required min="1" />
-        <textarea name="specialRequests" placeholder="Special requests (optional)"></textarea>
-        <button type="submit">Book Table</button>
-    </form>
-    <p id="responseMessage"></p>
 
-    <script>
-    document.getElementById("bookingForm").addEventListener("submit", async (e) => {
+  <header>The Curious Cat Pub – Book a Table</header>
+
+  <form id="bookingForm">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <input type="date" name="date" required />
+    <input type="time" name="time" required />
+    <input type="number" name="partySize" placeholder="Party Size" required />
+    <textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
+    <button type="submit">Submit Booking</button>
+    <div id="statusMessage"></div>
+  </form>
+
+  <footer>
+    &copy; 2025 The Curious Cat Pub. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
       e.preventDefault();
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
 
-      const res = await fetch("/book", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        date: form.date.value,
+        time: form.time.value,
+        partySize: form.partySize.value,
+        specialRequests: form.specialRequests.value
+      };
 
-      const result = await res.json();
-      document.getElementById("responseMessage").textContent = result.message;
+      const statusDiv = document.getElementById('statusMessage');
+      statusDiv.textContent = '';
+      statusDiv.className = '';
+
+      try {
+        const res = await fetch('https://pub-booking-backend.onrender.com//api/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          statusDiv.textContent = result.message;
+          statusDiv.className = 'confirmation';
+          form.reset();
+        } else {
+          statusDiv.textContent = result.message || 'Booking failed.';
+          statusDiv.className = 'error';
+        }
+      } catch (err) {
+        console.error(err);
+        statusDiv.textContent = 'An error occurred. Please try again later.';
+        statusDiv.className = 'error';
+      }
     });
-    </script>
+  </script>
+
 </body>
 </html>
