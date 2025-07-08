@@ -1,53 +1,54 @@
-﻿require("dotenv").config();
-const express = require("express");
-const nodemailer = require("nodemailer");
-const path = require("path");
+﻿require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const sgMail = require('@sendgrid/mail');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
-// Middleware to serve frontend and parse data
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
+// Set SendGrid API Key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// Booking route
-app.post("/book", async (req, res) => {
-    const { name, email, date, time, partySize, specialRequests } = req.body;
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
-    console.log("📥 Booking request received:");
-    console.log(req.body);
+app.use(express.static('public'));
 
-    // Email setup
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
-        },
-    });
+app.post('/api/book', async (req, res) => {
+  console.log('📥 Booking request received:');
+  console.log(req.body);
 
-    const mailOptions = {
-        from: `"Pub Booking" <${process.env.EMAIL_USER}>`,
-        to: email,
-        subject: "Your Pub Booking Confirmation",
-        text: `Hi ${name},\n\nYour booking for ${partySize} on ${date} at ${time} has been received.\n\nSpecial requests: ${specialRequests || "None"}\n\nCheers! 🍻`,
-    };
+  const { name, email, date, time, partySize, specialRequests } = req.body;
 
-    try {
-        await transporter.sendMail(mailOptions);
-        console.log("✅ Email sent successfully");
-        res.json({ message: "Booking confirmed!" });
-    } catch (err) {
-        console.error("❌ Email sending failed:", err);
-        res.status(500).json({ message: "Booking failed. Try again later." });
-    }
-});
+  const msg = {
+    to: email, // User who made the booking
+    from: process.env.FROM_EMAIL, // Verified sender email (your domain)
+    subject: `Booking Confirmation - The Curious Cat Pub`,
+    text: `Hi ${name},\n\nThank you for your booking at The Curious Cat Pub! Here are your details:\n\nDate: ${date}\nTime: ${time}\nParty Size: ${partySize}\nSpecial Requests: ${specialRequests || 'None'}\n\nWe look forward to seeing you!\n\nCheers,\nThe Curious Cat Pub Team`,
+    html: `<p>Hi ${name},</p>
+           <p>Thank you for your booking at <strong>The Curious Cat Pub</strong>! Here are your details:</p>
+           <ul>
+             <li><strong>Date:</strong> ${date}</li>
+             <li><strong>Time:</strong> ${time}</li>
+             <li><strong>Party Size:</strong> ${partySize}</li>
+             <li><strong>Special Requests:</strong> ${specialRequests || 'None'}</li>
+           </ul>
+           <p>We look forward to seeing you!</p>
+           <p>Cheers,<br>The Curious Cat Pub Team</p>`
+  };
 
-// Fallback to index.html for any unknown routes
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+  try {
+    await sgMail.send(msg);
+    console.log('✅ Confirmation email sent.');
+    res.status(200).json({ message: 'Booking successful and confirmation email sent!' });
+  } catch (error) {
+    console.error('❌ Email sending failed:', error.toString());
+    res.status(500).json({ message: 'Booking failed. Please try again later.' });
+  }
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server listening on port ${PORT}`);
 });
