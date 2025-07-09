@@ -7,17 +7,29 @@ const sgMail = require('@sendgrid/mail');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Set SendGrid API Key
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
 // Middleware
 app.use(cors({
   origin: 'https://thecuriouscatpub.netlify.app'
 }));
 app.use(bodyParser.json());
-
 app.use(express.static('public'));
 
+// Set SendGrid API Key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// 📌 Import auth middleware and routes
+const authMiddleware = require('./middleware/auth');
+const authRoutes = require('./routes/auth');
+
+// 📌 Mount auth routes at /api/auth (e.g., /api/auth/register and /api/auth/login)
+app.use('/api/auth', authRoutes);
+
+// ✅ Example protected route (test this with JWT)
+app.get('/api/secret', authMiddleware, (req, res) => {
+  res.json({ message: `Welcome, user ID: ${req.user.userId}. This route is protected.` });
+});
+
+// 📬 Booking endpoint (public for now, can be protected later)
 app.post('/api/book', async (req, res) => {
   console.log('📥 Booking request received:');
   console.log(req.body);
@@ -25,8 +37,8 @@ app.post('/api/book', async (req, res) => {
   const { name, email, date, time, partySize, specialRequests } = req.body;
 
   const msg = {
-    to: email, // User who made the booking
-    from: process.env.FROM_EMAIL, // Verified sender email (your domain)
+    to: email,
+    from: process.env.FROM_EMAIL,
     subject: `Booking Confirmation - The Curious Cat Pub`,
     text: `Hi ${name},\n\nThank you for your booking at The Curious Cat Pub! Here are your details:\n\nDate: ${date}\nTime: ${time}\nParty Size: ${partySize}\nSpecial Requests: ${specialRequests || 'None'}\n\nWe look forward to seeing you!\n\nCheers,\nThe Curious Cat Pub Team`,
     html: `<p>Hi ${name},</p>
