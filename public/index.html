@@ -3,102 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Curious Cat Pub – Table Booking</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <title>The Curious Cat Pub – Book a Table</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #1c1c1c;
-      color: #f8f8f8;
+      font-family: 'Open Sans', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    nav {
+      background: #181818;
+      padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      padding: 2rem;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    nav .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      color: #e0e0e0;
+      letter-spacing: 0.5px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #cccccc;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffffff;
     }
 
     header {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #ffcc00;
-      margin-bottom: 1rem;
       text-align: center;
+      margin: 2rem auto 1rem;
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #dddddd;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
     }
 
     form {
       display: flex;
       flex-direction: column;
       width: 100%;
-      max-width: 500px;
-      background: #2a2a2a;
-      padding: 1.5rem;
+      max-width: 600px;
+      background: #1b1b1b;
+      padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
     input, textarea, button {
-      margin-bottom: 1rem;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 5px;
+      margin-bottom: 1.2rem;
+      padding: 0.85rem;
+      border: 1px solid #333;
+      border-radius: 6px;
       font-size: 1rem;
-      font-family: 'Roboto', sans-serif;
+      background: #262626;
+      color: #f0f0f0;
     }
 
-    input, textarea {
-      background: #3a3a3a;
-      color: #f8f8f8;
+    textarea {
+      resize: vertical;
     }
 
     button {
-      background: #ffcc00;
-      color: #1c1c1c;
-      font-weight: bold;
-      cursor: pointer;
+      background: #2f2f2f;
+      color: #f0f0f0;
+      font-weight: 600;
+      border: 1px solid #444;
       transition: background 0.3s;
     }
 
     button:hover {
-      background: #e6b800;
+      background: #3b3b3b;
+    }
+
+    #statusMessage {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 0.5rem;
     }
 
     .confirmation {
-      margin-top: 1rem;
-      color: #00ff99;
-      font-weight: bold;
+      color: #76ffb4;
     }
 
     .error {
-      color: #ff6666;
+      color: #ff8080;
     }
 
     footer {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: #aaa;
       text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+      background: #181818;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-  <header>The Curious Cat Pub – Book a Table</header>
+  <nav>
+    <div class="logo">The Curious Cat</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html">Book</a></li>
+    </ul>
+  </nav>
 
-  <form id="bookingForm">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <input type="date" name="date" required />
-    <input type="time" name="time" required />
-    <input type="number" name="partySize" placeholder="Party Size" required />
-    <textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
-    <button type="submit">Submit Booking</button>
-    <div id="statusMessage"></div>
-  </form>
+  <header>Book a Table</header>
+
+  <main>
+    <form id="bookingForm">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="date" name="date" required />
+      <input type="time" name="time" required />
+      <input type="number" name="partySize" placeholder="Party Size" required />
+      <textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
+      <button type="submit">Submit Booking</button>
+      <div id="statusMessage"></div>
+    </form>
+  </main>
 
   <footer>
     &copy; 2025 The Curious Cat Pub. All rights reserved.
   </footer>
 
+  <!-- DO NOT EDIT JS -->
   <script>
     document.getElementById('bookingForm').addEventListener('submit', async function (e) {
       e.preventDefault();

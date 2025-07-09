@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome – The Curious Cat Pub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    nav {
+      background: #181818;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    nav .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      color: #e0e0e0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #cccccc;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #ffffff;
+    }
+
+    header {
+      text-align: center;
+      margin: 2rem auto 1rem;
+      font-family: 'Lora', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #dddddd;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      background: #1b1b1b;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin-bottom: 3rem;
+    }
+
+    .hero h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      line-height: 1.6;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .events-section {
+      margin-top: 2rem;
+    }
+
+    .events-section h2 {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
+    }
+
+    .event-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      background: #1b1b1b;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .event-card:hover {
+      transform: scale(1.02);
+    }
+
+    .event-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .event-card .event-info {
+      padding: 1rem;
+    }
+
+    .event-card .event-info h3 {
+      font-size: 1.1rem;
+      margin: 0 0 0.5rem;
+    }
+
+    .event-card .event-info p {
+      font-size: 0.95rem;
+      color: #bbb;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+      background: #181818;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">The Curious Cat</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html">Book</a></li>
+    </ul>
+  </nav>
+
+  <header>Welcome to The Curious Cat</header>
+
+  <main>
+
+    <div class="hero">
+      <h2>Your Neighbourhood Hideaway</h2>
+      <p>
+        Whether you're here for the comfort food, the moody lighting, or a cheeky whisky by the fireplace, you've found your spot. The Curious Cat is where good stories and great nights out begin.
+      </p>
+    </div>
+
+    <div class="events-section">
+      <h2>Upcoming Events</h2>
+      <div class="event-list">
+        <div class="event-card">
+          <img src="https://source.unsplash.com/400x300/?jazz,night" alt="Live Jazz Night">
+          <div class="event-info">
+            <h3>Live Jazz Sundays</h3>
+            <p>Every Sunday from 7PM – smooth tunes, candlelight, and cocktails.</p>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="https://source.unsplash.com/400x300/?beer,pub,quiz" alt="Pub Quiz Night">
+          <div class="event-info">
+            <h3>Quiz & Cask Thursdays</h3>
+            <p>Challenge your brain and your pint-handling skills. Starts 8PM sharp.</p>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img src="https://source.unsplash.com/400x300/?wine,fireplace" alt="Wine Tasting Night">
+          <div class="event-info">
+            <h3>Wine & Dine Fridays</h3>
+            <p>A curated menu of pairings, live acoustic, and fireside vibes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2025 The Curious Cat Pub. All rights reserved.
+  </footer>
+
+</body>
+</html>
