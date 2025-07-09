@@ -9,10 +9,14 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://thecuriouscatpub.netlify.app'
+  origin: [
+    'https://thecuriouscatpub.netlify.app',       // customer booking page
+    'https://thecuriouscatadmin.netlify.app'      // admin dashboard
+  ],
+  credentials: true,
 }));
 app.use(bodyParser.json());
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // Set SendGrid API Key
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
