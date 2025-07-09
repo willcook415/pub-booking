@@ -43,7 +43,7 @@ router.post('/login', async (req, res) => {
       { userId: user.id, email: user.email, isAdmin: user.isAdmin },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
-    );
+);
     res.json({ token });
   } catch (err) {
     res.status(500).json({ error: err.message });

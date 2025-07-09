@@ -87,7 +87,7 @@ app.post('/api/book', async (req, res) => {
 // ✅ Sync DB & Start server
 const { sequelize } = require('./models');
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync().then(() => {
   console.log('Database synced ✅');
   app.listen(PORT, () => {
     console.log(`🚀 Server listening on port ${PORT}`);
