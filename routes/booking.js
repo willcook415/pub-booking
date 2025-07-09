@@ -49,5 +49,33 @@ router.get('/all', authenticateToken, async (req, res) => {
   }
 });
 
+// DELETE /api/booking/:id
+router.delete('/:id', authenticateToken, async (req, res) => {
+  try {
+    const booking = await Booking.findByPk(req.params.id);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+
+    await booking.destroy();
+    res.json({ message: 'Booking deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete booking', details: err.message });
+  }
+});
+
+// PUT /api/booking/:id
+router.put('/:id', authenticateToken, async (req, res) => {
+  try {
+    const booking = await Booking.findByPk(req.params.id);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+
+    const { name, email, date, time, partySize, specialRequests } = req.body;
+
+    await booking.update({ name, email, date, time, partySize, specialRequests });
+    res.json({ message: 'Booking updated', booking });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update booking', details: err.message });
+  }
+});
+
 module.exports = router;
 
