@@ -1,8 +1,11 @@
-// src/App.jsx
+﻿// src/App.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
+
+  console.log('🎯 App loaded!');
+
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,7 +60,10 @@ function App() {
           className="mb-4 px-4 py-2 border rounded w-64"
         />
         <button
-          onClick={login}
+          onClick={() => {
+            console.log('🧪 CLICKED!');
+            login();
+          }}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
           Log In
