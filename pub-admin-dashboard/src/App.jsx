@@ -9,7 +9,7 @@ function App() {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState('');
 
-  const API_BASE = 'postgresql://postgres_bookings_user:Y1jcwibqNkqHKkZ6CY4EIFvzW0E2rRZ8@dpg-d1mo0cali9vc73ck5rhg-a.oregon-postgres.render.com/postgres_bookings';
+    const API_BASE = 'https://pub-booking-backend.onrender.com/';
 
   const login = async () => {
     try {
