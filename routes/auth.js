@@ -1,7 +1,10 @@
+console.log('✅ auth.js loaded');
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const db = require('../models');
+const User = db.User;
 const { body, validationResult } = require('express-validator');
 
 const router = express.Router();
@@ -9,6 +12,7 @@ const router = express.Router();
 router.post('/register',
   [body('email').isEmail(), body('password').isLength({ min: 6 })],
   async (req, res) => {
+    console.log('👋 Register endpoint hit');
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 

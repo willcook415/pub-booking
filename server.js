@@ -21,6 +21,9 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const authMiddleware = require('./middleware/auth');
 const authRoutes = require('./routes/auth');
 
+const bookingRoutes = require('./routes/booking');
+app.use('/api/booking', bookingRoutes);
+
 // 📌 Mount auth routes at /api/auth (e.g., /api/auth/register and /api/auth/login)
 app.use('/api/auth', authRoutes);
 
@@ -28,6 +31,12 @@ app.use('/api/auth', authRoutes);
 app.get('/api/secret', authMiddleware, (req, res) => {
   res.json({ message: `Welcome, user ID: ${req.user.userId}. This route is protected.` });
 });
+
+app.post('/api/test', (req, res) => {
+  console.log('✅ /api/test hit!');
+  res.json({ message: 'Test successful!' });
+});
+
 
 // 📬 Booking endpoint (public for now, can be protected later)
 app.post('/api/book', async (req, res) => {
@@ -63,6 +72,19 @@ app.post('/api/book', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server listening on port ${PORT}`);
+const db = require('./models');
+
+const { sequelize } = require('./models');
+
+// Force Sequelize to sync the models to the DB
+sequelize.sync({ force: true }).then(() => {
+  console.log('Database synced ✅');
 });
+
+
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server listening on port ${PORT}`);
+  });
+});
+
