@@ -9,7 +9,7 @@ function App() {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState('');
 
-    const API_BASE = 'https://pub-booking-backend.onrender.com/';
+    const API_BASE = 'https://pub-booking-backend.onrender.com';
 
   const login = async () => {
     try {
@@ -18,7 +18,8 @@ function App() {
       setToken(res.data.token);
       setError('');
     } catch (err) {
-      setError('Login failed');
+      console.error('Login error:', err.response?.data || err.message);
+      setError('Login failed: ' + (err.response?.data?.error || err.message));
     }
   };
 
