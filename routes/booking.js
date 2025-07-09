@@ -3,7 +3,7 @@ const router = express.Router();
 const { Booking } = require('../models');
 const authenticateToken = require('../middleware/auth');
 
-// Create a booking (POST /api/booking)
+// ✅ Create a booking (POST /api/booking)
 router.post('/', authenticateToken, async (req, res) => {
   try {
     const { name, email, date, time, partySize, specialRequests } = req.body;
@@ -23,7 +23,7 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
-// Get all bookings for a user (GET /api/booking)
+// ✅ Get bookings for logged-in user (GET /api/booking)
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const bookings = await Booking.findAll({
@@ -35,4 +35,19 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 });
 
+// ✅ Get all bookings (admin only) → GET /api/booking/all
+router.get('/all', authenticateToken, async (req, res) => {
+  try {
+    if (!req.user.isAdmin) {
+      return res.status(403).json({ error: 'Access denied – admin only' });
+    }
+
+    const bookings = await Booking.findAll();
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch all bookings', details: err.message });
+  }
+});
+
 module.exports = router;
+
