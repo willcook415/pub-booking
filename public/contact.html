@@ -18,38 +18,73 @@
     }
 
     nav {
-      background: #181818;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #2a2a2a;
-    }
+    background: #181818;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+    position: relative;
+  }
 
-    nav .logo {
-      font-family: 'Lora', serif;
-      font-size: 1.8rem;
-      color: #e0e0e0;
-    }
+  nav .logo {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    color: #e0e0e0;
+  }
 
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #cccccc;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #ffffff;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .hamburger span {
+    height: 3px;
+    width: 25px;
+    background: #ccc;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 768px) {
     nav ul {
-      list-style: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #181818;
+      width: 100%;
+      display: none;
+    }
+
+    nav ul.show {
       display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
     }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #cccccc;
-      font-weight: 500;
-      transition: color 0.3s;
+    .hamburger {
+      display: flex;
     }
-
-    nav ul li a:hover {
-      color: #ffffff;
-    }
+  }    
 
     header {
       text-align: center;
@@ -111,7 +146,12 @@
 
   <nav>
     <div class="logo">The Curious Cat</div>
-    <ul>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navLinks">
       <li><a href="home.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -124,19 +164,19 @@
   <main>
     <div class="contact-info">
       <h2>Come Visit Us</h2>
-      <p><strong>Address:</strong> 23 Cat Lane, Whiskerbury, WSK 2CL, England</p>
-      <p><strong>Phone:</strong> +44 (0)1234 567890</p>
-      <p><strong>Email:</strong> <a href="mailto:hello@curiouscatpub.co.uk" style="color:#bbb;">hello@curiouscatpub.co.uk</a></p>
+      <p><strong>Address:</strong> The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</p>
+      <p><strong>Phone:</strong> +44 (0)1234 567890 PLACEHOLDER</p>
+      <p><strong>Email:</strong> <a href="mailto:hello@curiouscatpub.co.uk" style="color:#bbb;">PLACEHOLDER</a></p>
       <p><strong>Opening Hours:</strong><br>
-        Mon–Thu: 12pm – 11pm<br>
-        Fri–Sat: 12pm – 12am<br>
-        Sun: 12pm – 10pm
+        Mon–Thu: 12pm – 11pm PLACEHOLDER<br>
+        Fri–Sat: 12pm – 12am PLACEHOLDER<br>
+        Sun: 12pm – 10pm PLACEHOLDER
       </p>
     </div>
 
     <div class="map">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.3459378442164!2d-0.12775838418388845!3d51.50735077963533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b333be6f10f%3A0xab72d081c5aeb302!2sThe%20Curious%20Cat%20Pub!5e0!3m2!1sen!2suk!4v1600000000000"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.1978067560417!2d1.122335276610325!3d51.344273171776656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d935a1f0425511%3A0xb403d0aae004a04f!2sThe%20Curious%20Cat!5e0!3m2!1sen!2suk!4v1752098914972!5m2!1sen!2suk"
         allowfullscreen=""
         loading="lazy"
         title="Map to The Curious Cat"
@@ -147,6 +187,12 @@
   <footer>
     &copy; 2025 The Curious Cat Pub. All rights reserved.
   </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+  </script>
 
 </body>
 </html>

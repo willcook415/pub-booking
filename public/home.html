@@ -18,38 +18,73 @@
     }
 
     nav {
-      background: #181818;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #2a2a2a;
-    }
+    background: #181818;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+    position: relative;
+  }
 
-    nav .logo {
-      font-family: 'Lora', serif;
-      font-size: 1.8rem;
-      color: #e0e0e0;
-    }
+  nav .logo {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    color: #e0e0e0;
+  }
 
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #cccccc;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover {
+    color: #ffffff;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .hamburger span {
+    height: 3px;
+    width: 25px;
+    background: #ccc;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 768px) {
     nav ul {
-      list-style: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #181818;
+      width: 100%;
+      display: none;
+    }
+
+    nav ul.show {
       display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
     }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #cccccc;
-      font-weight: 500;
-      transition: color 0.3s;
+    .hamburger {
+      display: flex;
     }
-
-    nav ul li a:hover {
-      color: #ffffff;
-    }
+  }
 
     header {
       text-align: center;
@@ -151,7 +186,12 @@
 
   <nav>
     <div class="logo">The Curious Cat</div>
-    <ul>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navLinks">
       <li><a href="home.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -204,6 +244,12 @@
   <footer>
     &copy; 2025 The Curious Cat Pub. All rights reserved.
   </footer>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+  </script>
 
 </body>
 </html>
