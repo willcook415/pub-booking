@@ -1,191 +1,267 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>About – The Curious Cat Pub</title>
-
-<style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>About – The Curious Cat Pub</title>
+  <style>
     * {
       box-sizing: border-box;
       font-family: 'Inter', sans-serif !important;
     }
-
     body {
       margin: 0;
-      background: #121212;
-      font-family: 'Inter', sans-serif;
+      background: #181818;
       color: #e0e0e0;
     }
-
     nav {
-    background: #181818;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #2a2a2a;
-    position: relative;
-  }
-
-  nav .logo {
-    font-family: 'Lora', serif;
-    font-size: 1.8rem;
-    color: #e0e0e0;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  nav ul li a {
-    text-decoration: none;
-    color: #cccccc;
-    font-weight: 500;
-    transition: color 0.3s;
-  }
-
-  nav ul li a:hover {
-    color: #ffffff;
-  }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 4px;
-  }
-
-  .hamburger span {
-    height: 3px;
-    width: 25px;
-    background: #ccc;
-    border-radius: 3px;
-  }
-
-  @media (max-width: 768px) {
-  	nav {
-    		position: relative;
-  	}
-
-  	nav ul {
-    		flex-direction: column;
-    		position: absolute;
-    		top: 100%;
-    		right: 0;
-    		background-color: #181818;
-    		width: 100%;
-    		display: none;
-    		z-index: 1000;
-    		padding: 1rem 2rem;
-  	}
-
-  	nav ul.show {
-    		display: flex;
-  	}
-	
-  	.hamburger {
-    		display: flex;
-  	}
+      background: #202020;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+      position: relative;
     }
-
-    header {
-      text-align: center;
-      margin: 2rem auto 1rem;
-      font-family: 'Lora', serif;
-      font-size: 2.2rem;
+    nav .logo {
+      font-size: 1.8rem;
       font-weight: 600;
-      color: #dddddd;
+      color: #e0e0e0;
     }
-
-    main {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      line-height: 1.7;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
     }
-
-    .intro {
-      background: #1b1b1b;
-      padding: 2rem;
+    nav ul li a {
+      text-decoration: none;
+      color: #cccccc;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffffff;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .hamburger span {
+      height: 3px;
+      width: 25px;
+      background: #ccc;
+      border-radius: 3px;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #181818;
+        width: 100%;
+        display: none;
+        z-index: 1000;
+        padding: 1rem 2rem;
+      }
+      nav ul.show {
+        display: flex;
+        border-top: 1px solid #2a2a2a;
+      }
+      nav ul li {
+        padding: 0.5rem 0;
+      }
+      .hamburger {
+        display: flex;
+      }
+    }
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      background: #222;
+      margin: 2rem auto;
+      padding: 3rem 1rem;
+      max-width: 1100px;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
-
-    .intro h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.6rem;
+    .section:nth-child(even) {
+      background: #2a2a2a;
+    }
+    .section img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 10px;
+    }
+    .text {
+      flex: 1;
+      min-width: 280px;
+text-align: center;
+    }
+    .text h2 {
+      font-size: 1.8rem;
       margin-bottom: 1rem;
-      color: #e8e8e8;
+      color: #ffffff;
+text-align: center;
     }
-
-    .intro p {
-      margin-bottom: 1.2rem;
+    .text p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #dddddd;
     }
-
+    .opening-hours {
+      background: #333;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    .opening-hours p {
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    .contact-item i {
+      font-style: normal;
+      color: #9ecfff;
+    }
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
-      color: #666;
-      background: #181818;
-      margin-top: 3rem;
+      color: #ccc;
+      background: #202020;
     }
+
+.contact-info {
+  text-align: center;
+}
+
+.contact-info p {
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.clock-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+
   </style>
 </head>
 <body>
+  <nav>
+    <div class="logo">The Curious Cat</div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="booking.html">Book</a></li>
+    </ul>
+  </nav>
 
-<nav>
-<div class="logo">The Curious Cat</div>
-<div class="hamburger" id="hamburger">
-<span></span>
-<span></span>
-<span></span>
-</div>
-<ul id="navLinks">
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="booking.html">Book</a></li>
-</ul>
-</nav>
+  <section class="section">
+    <div class="text">
+      <h2>Welcome to The Curious Cat</h2>
+      <p>
+        Nestled between Herne Bay and Canterbury, The Curious Cat is a traditional country pub reborn with charm and character. Previously known as The First & Last, our pub was completely refurbished in 2019, blending countryside hospitality with a quirky modern twist.
+      </p>
+    </div>
+    <img src="images/about1.png" alt="Curious Cat Pub exterior" />
+  </section>
 
-<header>About Us</header>
-<main>
-<div class="intro">
-<h2>Welcome to The Curious Cat</h2>
-<p>
-        Nestled in the heart of Whiskerbury, The Curious Cat is more than just a pub — it's a cosy retreat for lovers of great food, fine drink, and even better company. Established in 1892 and reborn in the modern age, we combine traditional English pub heritage with a tastefully contemporary twist.
+  <section class="section">
+    <img src="images/dog-friendly.avif" alt="Dog friendly pub area" />
+    <div class="text">
+      <h2>Dog Friendly</h2>
+      <p>
+        We adore dogs here and welcome all well-behaved pooches. Keep them on a lead and by your side, and we'll treat them to a free biscuit and fresh water. Let us know when you book so we can find a perfect table for everyone — paws and all.
       </p>
-<p>
-        Whether you’re popping in for a craft pint, savouring one of our award-winning roasts, or celebrating something special in our candlelit snug, you’ll feel at home here.
-      </p>
-<p>
-        Our team is proud to champion local suppliers, hand-pull ales, and classic British fare made with seasonal ingredients. From Sunday jazz nights to our infamous pub quiz, there's always something going on — and a story to tell.
-      </p>
-<p>
-        So come in, take a seat by the fireplace, and let us pour you a glass of something wonderful.
-      </p>
-</div>
-</main>
+    </div>
+  </section>
 
-<footer>
-      © 2025 The Curious Cat Pub. All rights reserved.
-      <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
-<p>Phone: +44 (0)1234 567890</p>
-<p>Email: hello@curiouscatpub.co.uk</p>
-<p>Mon–Thu: 12–11pm   |   Fri–Sat: 12–12am   |   Sun: 12–10pm</p>
-</footer>
+  <section class="section">
+    <div class="text">
+      <h2>Daily Specials & Sunday Roast</h2>
+      <p>
+        Our chalkboard specials are crafted fresh each day using local ingredients. And on Sundays, don't miss our legendary roasts served from 12–4:30pm. Perfect for large gatherings — just remember to book ahead!
+      </p>
+    </div>
+    <img src="images/sunday-roast.avif" alt="Sunday roast on plate" />
+  </section>
 
-<script>
+  <section class="section">
+    <div class="text">
+      <h2>Opening Times</h2>
+      <div class="opening-hours">
+        <p><strong>Monday – Saturday:</strong> 12 noon – 11:00pm</p>
+        <p><strong>Sunday:</strong> 12 noon – 6:00pm</p>
+        <br>
+        <p><strong>Food Service:</strong></p>
+        <p>Monday – Saturday: 12:00 – 2:30pm & 5:30 – 9:30pm</p>
+        <p>Sunday Roast: 12:00 – 4:30pm</p>
+        <br>
+        <p><strong>Closed:</strong> Christmas Day & Boxing Day</p>
+      </div>
+    </div>
+    <div class="clock-icon">
+     <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="48" stroke="#ccc" stroke-width="4"/>
+  <line x1="50" y1="50" x2="50" y2="25" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <line x1="50" y1="50" x2="70" y2="60" stroke="#ccc" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="50" cy="50" r="3" fill="#ccc"/>
+</svg>
+
+    </div>
+
+  </section>
+
+  <section class="section">
+    <div class="text">
+      <h2>Contact Us</h2>
+      <div class="contact-item"><i>📍</i> <p class="contact-line">Canterbury Road, Herne Common, CT6 7JU</p></div>
+      <div class="contact-item"><i>📧</i> <p class="contact-line"><a href="mailto:thecuriouscatpub@gmail.com">thecuriouscatpub@gmail.com</a></p></div>
+      <div class="contact-item"><i>📞</i> <p class="contact-line"><a href="tel:+441227283298">01227 283 298</a></p></div>
+      <div class="contact-item"><i>📘</i> <p class="contact-line"><a href="https://www.facebook.com/thecuriouscatpub" target="_blank">Message us on Facebook</a></p></div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 The Curious Cat Pub. All rights reserved.<br>
+    <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+    <p>Phone: +44 (0)1234 567890</p>
+    <p>Email: hello@curiouscatpub.co.uk</p>
+    <p>Mon–Thu: 12–11pm &nbsp; | &nbsp; Fri–Sat: 12–12am &nbsp; | &nbsp; Sun: 12–10pm</p>
+  </footer>
+
+  <script>
     document.getElementById('hamburger').addEventListener('click', function () {
       document.getElementById('navLinks').classList.toggle('show');
     });
   </script>
 </body>
 </html>
+
+
 
