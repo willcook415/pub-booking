@@ -4,7 +4,7 @@
 <head>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>About – The Curious Cat Pub</title>
+<title>Book a Table – The Curious Cat Pub</title>
 
 <style>
     * {
@@ -14,8 +14,8 @@
 
     body {
       margin: 0;
+      font-family: 'Open Sans', sans-serif;
       background: #121212;
-      font-family: 'Inter', sans-serif;
       color: #e0e0e0;
     }
 
@@ -98,28 +98,60 @@
     }
 
     main {
-      max-width: 800px;
-      margin: auto;
+      display: flex;
+      justify-content: center;
       padding: 2rem;
-      line-height: 1.7;
     }
 
-    .intro {
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 600px;
       background: #1b1b1b;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
-    .intro h2 {
-      font-family: 'Lora', serif;
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #e8e8e8;
-    }
-
-    .intro p {
+    input, textarea, button {
       margin-bottom: 1.2rem;
+      padding: 0.85rem;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #262626;
+      color: #f0f0f0;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background: #2f2f2f;
+      color: #f0f0f0;
+      font-weight: 600;
+      border: 1px solid #444;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #3b3b3b;
+    }
+
+    #statusMessage {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .confirmation {
+      color: #76ffb4;
+    }
+
+    .error {
+      color: #ff8080;
     }
 
     footer {
@@ -148,23 +180,18 @@
 </ul>
 </nav>
 
-<header>About Us</header>
+<header>Book a Table</header>
 <main>
-<div class="intro">
-<h2>Welcome to The Curious Cat</h2>
-<p>
-        Nestled in the heart of Whiskerbury, The Curious Cat is more than just a pub — it's a cosy retreat for lovers of great food, fine drink, and even better company. Established in 1892 and reborn in the modern age, we combine traditional English pub heritage with a tastefully contemporary twist.
-      </p>
-<p>
-        Whether you’re popping in for a craft pint, savouring one of our award-winning roasts, or celebrating something special in our candlelit snug, you’ll feel at home here.
-      </p>
-<p>
-        Our team is proud to champion local suppliers, hand-pull ales, and classic British fare made with seasonal ingredients. From Sunday jazz nights to our infamous pub quiz, there's always something going on — and a story to tell.
-      </p>
-<p>
-        So come in, take a seat by the fireplace, and let us pour you a glass of something wonderful.
-      </p>
-</div>
+<form id="bookingForm">
+<input name="name" placeholder="Your Name" required="" type="text"/>
+<input name="email" placeholder="Your Email" required="" type="email"/>
+<input name="date" required="" type="date"/>
+<input name="time" required="" type="time"/>
+<input name="partySize" placeholder="Party Size" required="" type="number"/>
+<textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
+<button type="submit">Submit Booking</button>
+<div id="statusMessage"></div>
+</form>
 </main>
 
 <footer>
@@ -175,11 +202,52 @@
 <p>Mon–Thu: 12–11pm   |   Fri–Sat: 12–12am   |   Sun: 12–10pm</p>
 </footer>
 
+<!-- DO NOT EDIT JS -->
 <script>
     document.getElementById('hamburger').addEventListener('click', function () {
       document.getElementById('navLinks').classList.toggle('show');
     });
+
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        date: form.date.value,
+        time: form.time.value,
+        partySize: form.partySize.value,
+        specialRequests: form.specialRequests.value
+      };
+
+      const statusDiv = document.getElementById('statusMessage');
+      statusDiv.textContent = '';
+      statusDiv.className = '';
+
+      try {
+        const res = await fetch('https://pub-booking-backend.onrender.com/api/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          statusDiv.textContent = result.message;
+          statusDiv.className = 'confirmation';
+          form.reset();
+        } else {
+          statusDiv.textContent = result.message || 'Booking failed.';
+          statusDiv.className = 'error';
+        }
+      } catch (err) {
+        console.error(err);
+        statusDiv.textContent = 'An error occurred. Please try again later.';
+        statusDiv.className = 'error';
+      }
+    });
   </script>
 </body>
 </html>
-
