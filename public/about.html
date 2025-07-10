@@ -69,24 +69,30 @@
   }
 
   @media (max-width: 768px) {
-    nav ul {
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: #181818;
-      width: 100%;
-      display: none;
-    }
+  	nav {
+    		position: relative;
+  	}
 
-    nav ul.show {
-      display: flex;
-    }
+  	nav ul {
+    		flex-direction: column;
+    		position: absolute;
+    		top: 100%;
+    		right: 0;
+    		background-color: #181818;
+    		width: 100%;
+    		display: none;
+    		z-index: 1000;
+    		padding: 1rem 2rem;
+  	}
 
-    .hamburger {
-      display: flex;
+  	nav ul.show {
+    		display: flex;
+  	}
+	
+  	.hamburger {
+    		display: flex;
+  	}
     }
-  }
 
     header {
       text-align: center;
