@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menus – The Curious Cat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    :root {
+      --gold: #e0b84c;
+      --dark-bg: #181818;
+      --darker-bg: #121212;
+      --text-light: #e0e0e0;
+      --text-muted: #cccccc;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--dark-bg);
+      color: var(--text-light);
+    }
+
+    nav {
+      background: #202020;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      background: var(--darker-bg);
+    }
+
+    .hero-section h1 {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .hero-section p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .menu-card {
+      background: #222;
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-card h2 {
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .menu-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: var(--gold);
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .menu-card a:hover {
+      background: #f5cd66;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      background: #202020;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">The Curious Cat</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="menus.html">Menus</a></li>
+      <li><a href="booking.html">Book</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero-section">
+    <h1>Our Menus</h1>
+    <p>From comforting pub classics to Sunday favourites and options for the little ones — there's something for everyone at The Curious Cat.</p>
+  </section>
+
+  <section class="menu-grid">
+    <div class="menu-card">
+      <h2>Main Menu</h2>
+      <a href="menus/standard-menu.pdf" target="_blank">View Menu</a>
+    </div>
+    <div class="menu-card">
+      <h2>Sunday Roast</h2>
+      <a href="menus/sunday-menu.pdf" target="_blank">View Menu</a>
+    </div>
+    <div class="menu-card">
+      <h2>Kids Menu</h2>
+      <a href="menus/kids-menu.pdf" target="_blank">View Menu</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 The Curious Cat Pub. All rights reserved.<br>
+    <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+    <p>Phone: +44 (0)1234 567890</p>
+    <p>Email: hello@curiouscatpub.co.uk</p>
+    <p>Mon–Thu: 12–11pm &nbsp; | &nbsp; Fri–Sat: 12–12am &nbsp; | &nbsp; Sun: 12–10pm</p>
+  </footer>
+</body>
+</html>

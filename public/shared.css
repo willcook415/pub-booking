@@ -59,6 +59,71 @@ nav ul li a:hover {
   color: var(--gold);
 }
 
+nav ul li a:hover {
+  color: var(--gold);
+}
+
+h2 {
+  color: #D9A441;
+}
+
+.event-card,
+.review-card {
+  border: 1px solid #3a3a3a;
+  box-shadow: 0 2px 10px rgba(217, 164, 65, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.event-card:hover,
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(217, 164, 65, 0.3);
+}
+
+.menu-buttons a {
+  background: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  transition: all 0.3s ease;
+}
+
+.menu-buttons a:hover {
+  background: #D9A441;
+  color: #121212;
+  border-color: #D9A441;
+}
+
+.intro-banner h1 {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  border: 2px solid rgba(217, 164, 65, 0.3);
+}
+
+.stars {
+  color: #D9A441;
+}
+
+
+
+
+nav ul li a.active {
+  color: var(--gold);
+}
+
+.card-title {
+  color: var(--gold);
+}
+
+.section h2 {
+  color: var(--gold);
+}
+
+.menu-buttons button:hover {
+  border-color: var(--gold);
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--gold);
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
