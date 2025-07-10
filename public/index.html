@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Curious Cat Pub – Book a Table</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
-  <style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book a Table – The Curious Cat Pub</title>
+
+<style>
     * {
       box-sizing: border-box;
     }
@@ -164,43 +165,44 @@
 </head>
 <body>
 
-  <nav>
-    <div class="logo">The Curious Cat</div>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <ul id="navLinks">
-      <li><a href="home.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="index.html">Book</a></li>
-    </ul>
-  </nav>
+<nav>
+<div class="logo">The Curious Cat</div>
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<ul id="navLinks">
+<li><a href="home.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="index.html">Book</a></li>
+</ul>
+</nav>
 
+<header>Book a Table</header>
+<main>
+<form id="bookingForm">
+<input name="name" placeholder="Your Name" required="" type="text"/>
+<input name="email" placeholder="Your Email" required="" type="email"/>
+<input name="date" required="" type="date"/>
+<input name="time" required="" type="time"/>
+<input name="partySize" placeholder="Party Size" required="" type="number"/>
+<textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
+<button type="submit">Submit Booking</button>
+<div id="statusMessage"></div>
+</form>
+</main>
 
-  <header>Book a Table</header>
+<footer>
+      © 2025 The Curious Cat Pub. All rights reserved.
+      <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+<p>Phone: +44 (0)1234 567890</p>
+<p>Email: hello@curiouscatpub.co.uk</p>
+<p>Mon–Thu: 12–11pm   |   Fri–Sat: 12–12am   |   Sun: 12–10pm</p>
+</footer>
 
-  <main>
-    <form id="bookingForm">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <input type="date" name="date" required />
-      <input type="time" name="time" required />
-      <input type="number" name="partySize" placeholder="Party Size" required />
-      <textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
-      <button type="submit">Submit Booking</button>
-      <div id="statusMessage"></div>
-    </form>
-  </main>
-
-  <footer>
-    &copy; 2025 The Curious Cat Pub. All rights reserved.
-  </footer>
-
-  <!-- DO NOT EDIT JS -->
-  <script>
+<!-- DO NOT EDIT JS -->
+<script>
     document.getElementById('hamburger').addEventListener('click', function () {
       document.getElementById('navLinks').classList.toggle('show');
     });
@@ -246,6 +248,5 @@
       }
     });
   </script>
-
 </body>
 </html>
