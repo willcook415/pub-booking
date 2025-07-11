@@ -223,143 +223,205 @@
   margin-top: 2rem;
 }
 
+      .cta-section {
+          text-align: center;
+          margin: 2.5rem auto 1rem;
+      }
+
+      .cta-button {
+          background: var(--gold);
+          color: #121212;
+          padding: 1rem 2rem;
+          font-size: 1.1rem;
+          font-weight: 600;
+          border-radius: 8px;
+          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          transition: background 0.3s, transform 0.2s, color 0.3s;
+      }
+
+          .cta-button:hover {
+              background: #f5cd66;
+              transform: translateY(-2px);
+          }
+
+      /* Scroll-in animation */
+      .scroll-reveal {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+          .scroll-reveal.visible {
+              opacity: 1;
+              transform: translateY(0);
+          }
+
+      /* Glow on hover */
+      .cta-button:hover {
+          background: #f5cd66;
+          color: #121212;
+          transform: translateY(-2px);
+          box-shadow: 0 0 12px rgba(217, 164, 65, 0.4);
+      }
+
+
+
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">The Curious Cat</div>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
+    <nav>
+        <div class="logo">The Curious Cat</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="menus.html">Menus</a></li>
+            <li><a href="booking.html">Book</a></li>
+        </ul>
+    </nav>
+
+    <div class="intro-banner">
+        <h1>Welcome to The Curious Cat — A Modern Pub with Classic Soul</h1>
     </div>
-    <ul id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="menus.html">Menus</a></li>
-      <li><a href="booking.html">Book</a></li>
-    </ul>
-  </nav>
 
-  <div class="intro-banner">
-    <h1>Welcome to The Curious Cat — A Modern Pub with Classic Soul</h1>
-  </div>
-
-  <main>
-
-    <section class="hero">
-      <h2>Your Neighbourhood Hideaway</h2>
-      <p>
-        Whether you're here for the comfort food, the moody lighting, or a cheeky whisky by the fireplace, you've found your spot. The Curious Cat is where good stories and great nights out begin.
-      </p>
-    </section>
-
-    <section class="events">
-      <h2>Upcoming Events</h2>
-      <div class="event-list">
-        <div class="event-card">
-          <img src="images/curry-night-placeholder.jpg" alt="Curry Night">
-          <div class="event-info">
-            <h3>Curry Night</h3>
-            <p>Every Thursday from 5PM – enjoy a rotating selection of house-made curries</p>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <img src="https://source.unsplash.com/400x300/?beer,pub,quiz" alt="Event 2 Alt Text">
-          <div class="event-info">
-            <h3>Event 2 Placeholder</h3>
-            <p>Event 2 Placeholder Description.</p>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <img src="https://source.unsplash.com/400x300/?wine,fireplace" alt="Event 3 Alt Text">
-          <div class="event-info">
-            <h3>Event 3 Placeholder</h3>
-            <p>Event 2 Placeholder Description.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="reviews">
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>"We had lunch here today out in the garden, beautiful weather and even more beautiful food. As an ex-chef I rarely enjoy food in restaurants as I'm very critical but after this meal there's not one single thing i would criticise. The staff were amazing and really friendly. Just how a country pub should be. Thank you so much and we will see you again!" - <i>Joe S</i></p>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>"Our family were looking for a location to host a family 90th birthday.
-On the evening of the event the function room was meticulously clean and the staff were ready and waiting to greet us.
-Throughout the party everyone was so attentive and the food was of a very high quality and quantity.
-Everything we requested was delivered to perfection.
-Thank you Curious Cat." - <i>Daniel Henderson</i></p>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p>"This place is as good as the reviews show. We dropped in while on a weekend break and the service was so friendly and the food so good. The shared nachos were the best I’ve ever had and the main of pork on Asian style salad was honestly just so delicious. Keep it up guys!" - <i>Steve M</i></p>
-      </div>
-    </section>
-
-    <section class="menu">
-      <h2>Explore Our Menus</h2>
-      <p>
-        From slow-roasted Sunday roasts to children’s favourites and our seasonal à la carte, our menus showcase the best of British pub food with a modern twist. All dishes are made fresh using local ingredients and a lot of love.
-      </p>
-      <div class="menu-buttons">
-	<a href="menus/standard-menu.pdf" target="_blank">Standard Menu</a>
-        <a href="menus/sunday-menu.pdf" target="_blank">Sunday Menu</a>
-        <a href="menus/kids-menu.pdf" target="_blank">Kids Menu</a>
-      </div>
-    </section>
-
-    <section class="map">
-      <div class="map-container">
-      <h2>Find Us</h2>
-      <p>
-      Located in the heart of Herne, The Curious Cat is easily accessible whether you're driving, taking public transport, or strolling from the coast.
-      </p>
-
-      <div class="transport-info">
-        <p><strong>🚗 By Car:</strong> Just a 10-minute drive from central Herne Bay or 5 minutes from the A299.</p>
-        <p><strong>🚌 By Bus:</strong> The “First and Last” bus stop is conveniently located right outside our pub.</p>
-        <p><strong>🚉 By Train:</strong> Herne Bay Railway Station is approximately a 45-minute walk away or a short taxi ride.</p>
-      </div>
-
-      <div class="map-frame">
-        <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.1978067560417!2d1.122335276610325!3d51.344273171776656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d935a1f0425511%3A0xb403d0aae004a04f!2sThe%20Curious%20Cat!5e0!3m2!1sen!2suk!4v1752098914972!5m2!1sen!2suk"
-        allowfullscreen=""
-        loading="lazy"
-        title="Map to The Curious Cat"
-        ></iframe>
-      </div>
-      </div>
+    <section class="cta-section">
+        <a href="booking.html" class="cta-button scroll-reveal">Book a Table Now</a>
     </section>
 
 
+    <main>
 
-  </main>
+        <section class="hero">
+            <h2>Your Neighbourhood Hideaway</h2>
+            <p>
+                Whether you're here for the comfort food, the moody lighting, or a cheeky whisky by the fireplace, you've found your spot. The Curious Cat is where good stories and great nights out begin.
+            </p>
+        </section>
 
-  <footer>
-    &copy; 2025 The Curious Cat Pub. All rights reserved.
-    <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
-    <p>Phone: +44 (0)1234 567890</p>
-    <p>Email: hello@curiouscatpub.co.uk</p>
-    <p>Mon–Thu: 12–11pm &nbsp; | &nbsp; Fri–Sat: 12–12am &nbsp; | &nbsp; Sun: 12–10pm</p>
-  </footer>
+        <section class="events">
+            <h2>Upcoming Events</h2>
+            <div class="event-list">
+                <div class="event-card">
+                    <img src="images/curry-night-placeholder.jpg" alt="Curry Night">
+                    <div class="event-info">
+                        <h3>Curry Night</h3>
+                        <p>Every Thursday from 5PM – enjoy a rotating selection of house-made curries</p>
+                    </div>
+                </div>
 
-  <script>
-      const hamburger = document.getElementById('hamburger');
-      const navLinks = document.getElementById('navLinks');
+                <div class="event-card">
+                    <img src="https://source.unsplash.com/400x300/?beer,pub,quiz" alt="Event 2 Alt Text">
+                    <div class="event-info">
+                        <h3>Event 2 Placeholder</h3>
+                        <p>Event 2 Placeholder Description.</p>
+                    </div>
+                </div>
 
-      hamburger.addEventListener('click', function () {
-          navLinks.classList.toggle('show');
-          hamburger.classList.toggle('active'); // ✨ This is the magic line
-      });
-  </script>
+                <div class="event-card">
+                    <img src="https://source.unsplash.com/400x300/?wine,fireplace" alt="Event 3 Alt Text">
+                    <div class="event-info">
+                        <h3>Event 3 Placeholder</h3>
+                        <p>Event 2 Placeholder Description.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"We had lunch here today out in the garden, beautiful weather and even more beautiful food. As an ex-chef I rarely enjoy food in restaurants as I'm very critical but after this meal there's not one single thing i would criticise. The staff were amazing and really friendly. Just how a country pub should be. Thank you so much and we will see you again!" - <i>Joe S</i></p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>
+                    "Our family were looking for a location to host a family 90th birthday.
+                    On the evening of the event the function room was meticulously clean and the staff were ready and waiting to greet us.
+                    Throughout the party everyone was so attentive and the food was of a very high quality and quantity.
+                    Everything we requested was delivered to perfection.
+                    Thank you Curious Cat." - <i>Daniel Henderson</i>
+                </p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"This place is as good as the reviews show. We dropped in while on a weekend break and the service was so friendly and the food so good. The shared nachos were the best I’ve ever had and the main of pork on Asian style salad was honestly just so delicious. Keep it up guys!" - <i>Steve M</i></p>
+            </div>
+        </section>
+
+        <section class="menu">
+            <h2>Explore Our Menus</h2>
+            <p>
+                From slow-roasted Sunday roasts to children’s favourites and our seasonal à la carte, our menus showcase the best of British pub food with a modern twist. All dishes are made fresh using local ingredients and a lot of love.
+            </p>
+            <div class="menu-buttons">
+                <a href="menus/standard-menu.pdf" target="_blank">Standard Menu</a>
+                <a href="menus/sunday-menu.pdf" target="_blank">Sunday Menu</a>
+                <a href="menus/kids-menu.pdf" target="_blank">Kids Menu</a>
+            </div>
+        </section>
+
+        <section class="map">
+            <div class="map-container">
+                <h2>Find Us</h2>
+                <p>
+                    Located in the heart of Herne, The Curious Cat is easily accessible whether you're driving, taking public transport, or strolling from the coast.
+                </p>
+
+                <div class="transport-info">
+                    <p><strong>🚗 By Car:</strong> Just a 10-minute drive from central Herne Bay or 5 minutes from the A299.</p>
+                    <p><strong>🚌 By Bus:</strong> The “First and Last” bus stop is conveniently located right outside our pub.</p>
+                    <p><strong>🚉 By Train:</strong> Herne Bay Railway Station is approximately a 45-minute walk away or a short taxi ride.</p>
+                </div>
+
+                <div class="map-frame">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.1978067560417!2d1.122335276610325!3d51.344273171776656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d935a1f0425511%3A0xb403d0aae004a04f!2sThe%20Curious%20Cat!5e0!3m2!1sen!2suk!4v1752098914972!5m2!1sen!2suk"
+                            allowfullscreen=""
+                            loading="lazy"
+                            title="Map to The Curious Cat"></iframe>
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <footer>
+        &copy; 2025 The Curious Cat Pub. All rights reserved.
+        <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+        <p>Phone: +44 (0)1234 567890</p>
+        <p>Email: hello@curiouscatpub.co.uk</p>
+        <p>Mon–Thu: 12–11pm &nbsp; | &nbsp; Fri–Sat: 12–12am &nbsp; | &nbsp; Sun: 12–10pm</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function () {
+            navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active'); // ✨ This is the magic line
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 
 </body>
 </html>

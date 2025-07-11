@@ -118,6 +118,17 @@ nav ul li a.active {
   color: var(--gold);
 }
 
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    a:hover {
+        color: var(--gold);
+    }
+
+
 .menu-buttons button:hover {
   border-color: var(--gold);
   background: rgba(255, 215, 0, 0.1);
