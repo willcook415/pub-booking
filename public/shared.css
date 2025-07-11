@@ -138,23 +138,46 @@ nav ul li a.active {
   border-radius: 3px;
 }
 
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .hamburger span {
+        transition: all 0.4s ease;
+    }
+
+
 /* Mobile nav */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: var(--bg-dark);
-    width: 100%;
-    display: none;
-    z-index: 1000;
-    padding: 1rem 2rem;
-    border-top: 1px solid var(--gold);
-  }
-  nav ul.show {
-    display: flex;
-  }
+    nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: var(--bg-dark);
+        width: 100%;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: all 0.4s ease;
+        z-index: 1000;
+        padding: 0 2rem;
+        border-top: 1px solid var(--gold);
+    }
+
+    nav ul.show {
+        max-height: 300px; /* adjust as needed for your link count */
+        opacity: 1;
+        padding: 1rem 2rem;
+    }
   nav ul li {
     padding: 0.5rem 0;
   }
