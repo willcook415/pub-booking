@@ -43,7 +43,11 @@ app.post('/api/test', (req, res) => {
 // 📬 Public booking endpoint (handles non-logged-in bookings)
 app.post('/api/book', async (req, res) => {
   console.log('📥 Booking request received:', req.body);
-  const { name, email, date, time, partySize, specialRequests } = req.body;
+    const { name, email, date, time, partySize, specialRequests } = req.body;
+
+    if (parseInt(partySize) > 8) {
+        return res.status(400).json({ message: 'For groups of 9 or more, please call us directly to book.' });
+    }
 
   try {
     // ✅ Save to DB

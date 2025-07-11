@@ -231,7 +231,14 @@
 
       const statusDiv = document.getElementById('statusMessage');
       statusDiv.textContent = '';
-      statusDiv.className = '';
+        statusDiv.className = '';
+
+        if (parseInt(data.partySize) > 8) {
+            statusDiv.textContent = 'For groups of 9 or more, please call us directly to book.';
+            statusDiv.className = 'error';
+            return;
+        }
+
 
       try {
         const res = await fetch('https://pub-booking-backend.onrender.com/api/book', {
