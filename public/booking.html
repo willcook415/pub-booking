@@ -152,7 +152,7 @@
     <form id="bookingForm">
         <input name="name" placeholder="Your Name" required="" type="text" />
         <input name="email" placeholder="Your Email" required="" type="email" />
-        <input name="date" required="" type="date" />
+        <input name="date" required="" type="date" id="dateInput"/>
         <select name="time" required>
             <option value="">Select a Time</option>
             <option value="11:00">11:00</option>
@@ -216,6 +216,38 @@
 <!-- DO NOT EDIT JS -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+        const dateField = document.getElementById('dateInput');
+        const today = new Date().toISOString().split("T")[0];
+        dateField.min = today;
+
+        const timeField = document.getElementById('time');
+        const allowedTimes = Array.from(timeField.options).map(opt => opt.value).filter(v => v);
+
+        dateField.addEventListener('change', () => {
+            const selectedDate = new Date(dateField.value);
+            const now = new Date();
+
+            // Clear all options first (except placeholder)
+            timeField.innerHTML = '<option value="">Select a Time</option>';
+
+            const isToday = selectedDate.toDateString() === now.toDateString();
+
+            allowedTimes.forEach(time => {
+                const [hours, minutes] = time.split(':').map(Number);
+                const timeDate = new Date(selectedDate);
+                timeDate.setHours(hours, minutes, 0, 0);
+
+                if (!isToday || timeDate > now) {
+                    const option = document.createElement('option');
+                    option.value = time;
+                    option.textContent = time;
+                    timeField.appendChild(option);
+                }
+            });
+        });
+
+
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
@@ -226,13 +258,16 @@
 
         const dateInput = document.querySelector('input[name="date"]');
         dateInput.addEventListener('input', () => {
-            const val = dateInput.value;
-            const year = val.split("-")[0];
+            // Force only valid YYYY-MM-DD pattern
+            const regex = /^\d{4}-\d{2}-\d{2}$/;
 
-            if (year && year.length > 4) {
-                const trimmed = year.slice(0, 4);
-                const rest = val.slice(4);
-                dateInput.value = `${trimmed}${rest}`;
+            if (dateInput.value.length > 10) {
+                dateInput.value = dateInput.value.slice(0, 10);
+            }
+
+            if (!regex.test(dateInput.value) && dateInput.value.length === 10) {
+                alert("Please enter a valid date in YYYY-MM-DD format.");
+                dateInput.value = "";
             }
         });
 
