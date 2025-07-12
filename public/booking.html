@@ -342,12 +342,12 @@
                 specialRequests: form.specialRequests.value
             };
 
-            statusDiv.textContent = '';
+            statusDiv.textContent = 'Booking...';
             statusDiv.className = '';
 
             if (parseInt(data.partySize) > 8) {
                 statusDiv.textContent = 'For groups of 9 or more, please call us directly to book.';
-                statusDiv.className = 'error';
+                statusDiv.className = 'error visible';
                 return;
             }
 
@@ -362,16 +362,16 @@
 
                 if (res.ok) {
                     statusDiv.textContent = result.message;
-                    statusDiv.className = 'confirmation';
+                    statusDiv.className = 'confirmation visible';
                     form.reset();
                 } else {
                     statusDiv.textContent = result.message || 'Booking failed.';
-                    statusDiv.className = 'error';
+                    statusDiv.className = 'error visible';
                 }
             } catch (err) {
                 console.error(err);
                 statusDiv.textContent = 'An error occurred. Please try again later.';
-                statusDiv.className = 'error';
+                statusDiv.className = 'error visible';
             }
         });
     });

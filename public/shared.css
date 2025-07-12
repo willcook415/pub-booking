@@ -517,6 +517,12 @@ nav a {
     max-width: 1100px;
 }
 
+.confirmation {
+    color: var(--gold);
+    text-shadow: 0 0 6px var(--gold);
+}
+
+
     #events h2,
     #events p,
     #events .button {
