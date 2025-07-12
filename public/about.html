@@ -9,7 +9,6 @@
   <style>
     * {
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif !important;
     }
     body {
       margin: 0;
@@ -32,14 +31,14 @@
       <span></span>
     </div>
     <ul id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="menus.html">Menus</a></li>
-      <li><a href="booking.html">Book</a></li>
+      <li><a href="index.html" class="text-link">Home</a></li>
+      <li><a href="about.html" class="text-link">About</a></li>
+      <li><a href="menus.html" class="text-link">Menus</a></li>
+      <li><a href="booking.html" class="text-link">Book</a></li>
     </ul>
   </nav>
 
-  <section class="section">
+  <section class="section fade-section">
     <div class="text">
       <h2>Welcome to The Curious Cat</h2>
       <p>
@@ -49,7 +48,7 @@
     <img src="images/about1.png" alt="Curious Cat Pub exterior" />
   </section>
 
-  <section class="section">
+  <section class="section fade-section">
     <img src="images/dog-friendly.avif" alt="Dog friendly pub area" />
     <div class="text">
       <h2>Dog Friendly</h2>
@@ -59,7 +58,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section fade-section">
     <div class="text">
       <h2>Daily Specials & Sunday Roast</h2>
       <p>
@@ -69,18 +68,19 @@
     <img src="images/sunday-roast.avif" alt="Sunday roast on plate" />
   </section>
 
-  <section class="section">
+  <section class="section fade-section">
     <div class="text">
       <h2>Opening Times</h2>
       <div class="opening-hours">
         <p><strong>Monday – Saturday:</strong> 12 noon – 11:00pm</p>
         <p><strong>Sunday:</strong> 12 noon – 6:00pm</p>
         <br>
-        <p><strong>Food Service:</strong></p>
+        <h3>Food Service:</h3>
         <p>Monday – Saturday: 12:00 – 2:30pm & 5:30 – 9:30pm</p>
         <p>Sunday Roast: 12:00 – 4:30pm</p>
         <br>
-        <p><strong>Closed:</strong> Christmas Day & Boxing Day</p>
+        <h3>Closed:</h3> 
+        <p>Christmas Day & Boxing Day</p>
       </div>
     </div>
     <div class="clock-icon">
@@ -93,7 +93,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section fade-section">
     <div class="text">
       <h2>Contact Us</h2>
       <div class="contact-item"><i>📍</i> <p class="contact-line">Canterbury Road, Herne Common, CT6 7JU</p></div>
@@ -118,6 +118,21 @@
       hamburger.addEventListener('click', function () {
           navLinks.classList.toggle('show');
           hamburger.classList.toggle('active'); // ✨ This is the magic line
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+          const sections = document.querySelectorAll('.fade-section');
+
+          const observer = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                      entry.target.classList.add('visible');
+                      observer.unobserve(entry.target); // Only animate once
+                  }
+              });
+          }, { threshold: 0.1 });
+
+          sections.forEach(section => observer.observe(section));
       });
   </script>
 </body>

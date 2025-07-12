@@ -113,10 +113,10 @@
       <span></span>
     </div>
     <ul id="navLinks">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="menus.html">Menus</a></li>
-      <li><a href="booking.html">Book</a></li>
+      <li><a href="index.html" class="text-link">Home</a></li>
+      <li><a href="about.html" class="text-link">About</a></li>
+      <li><a href="menus.html" class="text-link">Menus</a></li>
+      <li><a href="booking.html" class="text-link">Book</a></li>
     </ul>
   </nav>
 
@@ -125,7 +125,7 @@
     <p>From comforting pub classics to Sunday favourites and options for the little ones — there's something for everyone at The Curious Cat.</p>
   </section>
 
-  <section class="menu-grid">
+  <section class="menu-grid fade-section">
     <div class="menu-card">
       <h2>Main Menu</h2>
       <a href="menus/standard-menu.pdf" target="_blank">View Menu</a>
@@ -155,6 +155,21 @@
     hamburger.addEventListener('click', function () {
         navLinks.classList.toggle('show');
         hamburger.classList.toggle('active'); // ✨ This is the magic line
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.fade-section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
     });
 </script>
 </body>

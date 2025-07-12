@@ -127,6 +127,37 @@
             border-color: var(--gold);
         }
 
+        form input:focus,
+        form textarea:focus,
+        form select:focus {
+            box-shadow: 0 0 6px var(--gold);
+        }
+
+    #statusMessage {
+        transition: opacity 0.4s ease;
+        opacity: 0;
+    }
+
+        #statusMessage.visible {
+            opacity: 1;
+        }
+
+    @media (max-width: 600px) {
+        main {
+            padding: 1rem;
+        }
+
+        form {
+            padding: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        header {
+            font-size: 1.8rem;
+        }
+    }
+
+
 
   </style>
 </head>
@@ -140,19 +171,20 @@
 <span></span>
 </div>
 <ul id="navLinks">
-<li><a href="index.html">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="menus.html">Menus</a></li>
-<li><a href="booking.html">Book</a></li>
+<li><a href="index.html" class="text-link">Home</a></li>
+<li><a href="about.html" class="text-link">About</a></li>
+<li><a href="menus.html" class="text-link">Menus</a></li>
+<li><a href="booking.html" class="text-link">Book</a></li>
 </ul>
 </nav>
 
 <header>Book a Table</header>
 <main>
-    <form id="bookingForm">
+    <form id="bookingForm" class="fade-section">
+        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Reserve Your Spot</h2>
         <input name="name" placeholder="Your Name" required="" type="text" />
         <input name="email" placeholder="Your Email" required="" type="email" />
-        <input name="date" required="" type="date" id="dateInput"/>
+        <input name="date" required="" type="date" id="dateInput" />
         <select name="time" id="time" required>
             <option value="">Select a Time</option>
             <option value="11:00">11:00</option>
@@ -201,6 +233,7 @@
         <input name="partySize" placeholder="Party Size" required="" type="number" />
 <textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
         <button type="submit">Submit Booking</button>
+        <div id="loadingSpinner" style="display: none; text-align: center;">Booking...</div>
         <div id="statusMessage"></div>
     </form>
 </main>
@@ -216,6 +249,30 @@
 <!-- DO NOT EDIT JS -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        const statusDiv = document.getElementById('statusMessage');
+
+        const spinner = document.getElementById('loadingSpinner');
+        spinner.style.display = 'block';
+        statusDiv.textContent = '';
+        statusDiv.className = '';
+        spinner.style.display = 'none';
+
+        statusDiv.classList.add('visible');
+
+
+
+        const sections = document.querySelectorAll('.fade-section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
 
         const dateField = document.getElementById('dateInput');
         const today = new Date().toISOString().split("T")[0];
@@ -284,7 +341,6 @@
                 specialRequests: form.specialRequests.value
             };
 
-            const statusDiv = document.getElementById('statusMessage');
             statusDiv.textContent = '';
             statusDiv.className = '';
 

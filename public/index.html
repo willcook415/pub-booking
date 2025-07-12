@@ -265,6 +265,95 @@
           box-shadow: 0 0 12px rgba(217, 164, 65, 0.4);
       }
 
+      
+
+      @keyframes fadeIn {
+          from {
+              opacity: 0;
+              transform: translateY(5px);
+          }
+
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      @keyframes fadeInDown {
+          from {
+              opacity: 0;
+              transform: translateY(-10px);
+          }
+
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      .status-bar {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          gap: 2rem;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+          padding: 1rem;
+      }
+
+      @keyframes goldPulse {
+          0% {
+              box-shadow: 0 0 8px rgba(255, 215, 0, 0.1);
+          }
+
+          50% {
+              box-shadow: 0 0 14px rgba(255, 215, 0, 0.4);
+          }
+
+          100% {
+              box-shadow: 0 0 8px rgba(255, 215, 0, 0.1);
+          }
+      }
+
+      .info-banner {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-weight: 500;
+          padding: 0.75rem 1.5rem;
+          border-left: 4px solid #d4af37;
+          background: rgba(255, 255, 255, 0.05);
+          color: #e0e0e0;
+          border-radius: 8px;
+          font-size: 1rem;
+          line-height: 1.5;
+          min-width: 280px;
+          max-width: 400px;
+          justify-content: center;
+          transition: all 0.3s ease;
+          box-shadow: 0 0 8px rgba(255, 215, 0, 0.1);
+          margin-bottom: 0.5rem;
+          animation: goldPulse 1.5s infinite ease-in-out;
+      }
+
+          .info-banner:hover {
+              box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+              background: rgba(255, 255, 255, 0.08);
+              color: #fff;
+              cursor: default;
+          }
+
+      #openingStatus::before {
+          content: '🕒';
+      }
+
+      #weatherStatus::before {
+          content: '';
+      }
+      .info-banner, #openingStatus, #weatherStatus {
+          font-family: 'Inter', sans-serif;
+          letter-spacing: 0.3px;
+      }
 
 
   </style>
@@ -279,10 +368,10 @@
             <span></span>
         </div>
         <ul id="navLinks">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="menus.html">Menus</a></li>
-            <li><a href="booking.html">Book</a></li>
+            <li><a href="index.html" class="text-link">Home</a></li>
+            <li><a href="about.html" class="text-link">About</a></li>
+            <li><a href="menus.html" class="text-link">Menus</a></li>
+            <li><a href="booking.html" class="text-link">Book</a></li>
         </ul>
     </nav>
 
@@ -291,102 +380,113 @@
     </div>
 
     <section class="cta-section">
-        <a href="booking.html" class="cta-button scroll-reveal">Book a Table Now</a>
+        <a href="booking.html" class="cta-button scroll-reveal gold-btn">Book a Table Now</a>
     </section>
 
 
     <main>
-
-        <section class="hero">
-            <h2>Your Neighbourhood Hideaway</h2>
-            <p>
-                Whether you're here for the comfort food, the moody lighting, or a cheeky whisky by the fireplace, you've found your spot. The Curious Cat is where good stories and great nights out begin.
-            </p>
+        <section class="status-bar">
+            <div id="openingStatus" class="info-banner opening-banner"></div>
+            <div id="weatherStatus" class="info-banner weather-banner"></div>
         </section>
-
-        <section class="events">
-            <h2>Upcoming Events</h2>
-            <div class="event-list">
-                <div class="event-card">
-                    <img src="images/curry-night-placeholder.jpg" alt="Curry Night">
-                    <div class="event-info">
-                        <h3>Curry Night</h3>
-                        <p>Every Thursday from 5PM – enjoy a rotating selection of house-made curries</p>
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <img src="https://source.unsplash.com/400x300/?beer,pub,quiz" alt="Event 2 Alt Text">
-                    <div class="event-info">
-                        <h3>Event 2 Placeholder</h3>
-                        <p>Event 2 Placeholder Description.</p>
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <img src="https://source.unsplash.com/400x300/?wine,fireplace" alt="Event 3 Alt Text">
-                    <div class="event-info">
-                        <h3>Event 3 Placeholder</h3>
-                        <p>Event 2 Placeholder Description.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reviews">
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"We had lunch here today out in the garden, beautiful weather and even more beautiful food. As an ex-chef I rarely enjoy food in restaurants as I'm very critical but after this meal there's not one single thing i would criticise. The staff were amazing and really friendly. Just how a country pub should be. Thank you so much and we will see you again!" - <i>Joe S</i></p>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
+            <section class="hero fade-section">
+                <h2>Your Neighbourhood Hideaway</h2>
                 <p>
-                    "Our family were looking for a location to host a family 90th birthday.
-                    On the evening of the event the function room was meticulously clean and the staff were ready and waiting to greet us.
-                    Throughout the party everyone was so attentive and the food was of a very high quality and quantity.
-                    Everything we requested was delivered to perfection.
-                    Thank you Curious Cat." - <i>Daniel Henderson</i>
+                    Whether you're here for the comfort food, the moody lighting, or a cheeky whisky by the fireplace, you've found your spot. The Curious Cat is where good stories and great nights out begin.
                 </p>
-            </div>
-            <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"This place is as good as the reviews show. We dropped in while on a weekend break and the service was so friendly and the food so good. The shared nachos were the best I’ve ever had and the main of pork on Asian style salad was honestly just so delicious. Keep it up guys!" - <i>Steve M</i></p>
-            </div>
-        </section>
+            </section>
 
-        <section class="menu">
-            <h2>Explore Our Menus</h2>
-            <p>
-                From slow-roasted Sunday roasts to children’s favourites and our seasonal à la carte, our menus showcase the best of British pub food with a modern twist. All dishes are made fresh using local ingredients and a lot of love.
-            </p>
-            <div class="menu-buttons">
-                <a href="menus/standard-menu.pdf" target="_blank">Standard Menu</a>
-                <a href="menus/sunday-menu.pdf" target="_blank">Sunday Menu</a>
-                <a href="menus/kids-menu.pdf" target="_blank">Kids Menu</a>
-            </div>
-        </section>
+            <section class="events fade-section">
+                <h2>Upcoming Events</h2>
+                <div class="event-list">
+                    <div class="event-card">
+                        <img src="images/curry-night-placeholder.jpg" alt="Curry Night">
+                        <div class="event-info">
+                            <h3>Curry Night</h3>
+                            <p>Every Thursday from 5PM – enjoy a rotating selection of house-made curries</p>
+                        </div>
+                    </div>
 
-        <section class="map">
-            <div class="map-container">
-                <h2>Find Us</h2>
+                    <div class="event-card">
+                        <img src="https://source.unsplash.com/400x300/?beer,pub,quiz" alt="Event 2 Alt Text">
+                        <div class="event-info">
+                            <h3>Event 2 Placeholder</h3>
+                            <p>Event 2 Placeholder Description.</p>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="https://source.unsplash.com/400x300/?wine,fireplace" alt="Event 3 Alt Text">
+                        <div class="event-info">
+                            <h3>Event 3 Placeholder</h3>
+                            <p>Event 2 Placeholder Description.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reviews fade-section">
+                <h2 class="reviews-title">What Our Guests Are Saying</h2>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"We had lunch here today out in the garden, beautiful weather and even more beautiful food. As an ex-chef I rarely enjoy food in restaurants as I'm very critical but after this meal there's not one single thing i would criticise. The staff were amazing and really friendly. Just how a country pub should be. Thank you so much and we will see you again!" - <i>Joe S</i></p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>
+                        "Our family were looking for a location to host a family 90th birthday.
+                        On the evening of the event the function room was meticulously clean and the staff were ready and waiting to greet us.
+                        Throughout the party everyone was so attentive and the food was of a very high quality and quantity.
+                        Everything we requested was delivered to perfection.
+                        Thank you Curious Cat." - <i>Daniel Henderson</i>
+                    </p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"This place is as good as the reviews show. We dropped in while on a weekend break and the service was so friendly and the food so good. The shared nachos were the best I’ve ever had and the main of pork on Asian style salad was honestly just so delicious. Keep it up guys!" - <i>Steve M</i></p>
+                </div>
+            </section>
+
+            <section class="menu fade-section">
+                <h2>Explore Our Menus</h2>
                 <p>
-                    Located in the heart of Herne, The Curious Cat is easily accessible whether you're driving, taking public transport, or strolling from the coast.
+                    From slow-roasted Sunday roasts to children’s favourites and our seasonal à la carte, our menus showcase the best of British pub food with a modern twist. All dishes are made fresh using local ingredients and a lot of love.
                 </p>
-
-                <div class="transport-info">
-                    <p><strong>🚗 By Car:</strong> Just a 10-minute drive from central Herne Bay or 5 minutes from the A299.</p>
-                    <p><strong>🚌 By Bus:</strong> The “First and Last” bus stop is conveniently located right outside our pub.</p>
-                    <p><strong>🚉 By Train:</strong> Herne Bay Railway Station is approximately a 45-minute walk away or a short taxi ride.</p>
+                <div class="menu-buttons">
+                    <a href="menus/standard-menu.pdf" target="_blank">Standard Menu</a>
+                    <a href="menus/sunday-menu.pdf" target="_blank">Sunday Menu</a>
+                    <a href="menus/kids-menu.pdf" target="_blank">Kids Menu</a>
                 </div>
+            </section>
 
-                <div class="map-frame">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.1978067560417!2d1.122335276610325!3d51.344273171776656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d935a1f0425511%3A0xb403d0aae004a04f!2sThe%20Curious%20Cat!5e0!3m2!1sen!2suk!4v1752098914972!5m2!1sen!2suk"
-                            allowfullscreen=""
-                            loading="lazy"
-                            title="Map to The Curious Cat"></iframe>
-                </div>
-            </div>
-        </section>
+            <section class="map fade-section">
+                <div class="map-container">
+                    <h2>Find Us</h2>
+                    <p>
+                        Located in the heart of Herne, The Curious Cat is easily accessible whether you're driving, taking public transport, or strolling from the coast.
+                    </p>
+
+                    <div class="transport-info">
+                        <div class="travel-option">
+                            <h3>🚗 By Car:</h3> <p>Just a 10-minute drive from central Herne Bay or 5 minutes from the A299.</p>
+                        </div>
+                        <div class="travel-option">
+                            <h3>🚌 By Bus:</h3> <p>The “First and Last” bus stop is conveniently located right outside our pub.</p>
+                        </div>
+                        <div class="travel-option">
+                            <h3>🚉 By Train:</h3> <p>Herne Bay Railway Station is approximately a 45-minute walk away or a short taxi ride.</p>
+                        </div>
+                            
+                        </div>
+
+                        <div class="map-frame">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2492.1978067560417!2d1.122335276610325!3d51.344273171776656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d935a1f0425511%3A0xb403d0aae004a04f!2sThe%20Curious%20Cat!5e0!3m2!1sen!2suk!4v1752098914972!5m2!1sen!2suk"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    title="Map to The Curious Cat"></iframe>
+                        </div>
+                    </div>
+            </section>
 
 
 
@@ -394,6 +494,7 @@
 
     <footer>
         &copy; 2025 The Curious Cat Pub. All rights reserved.
+        <h2 class="footer-title">The Curious Cat</h2>
         <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
         <p>Phone: +44 (0)1234 567890</p>
         <p>Email: hello@curiouscatpub.co.uk</p>
@@ -420,6 +521,71 @@
 
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            const weatherBanner = document.getElementById('weatherStatus');
+
+            try {
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=51.3704&longitude=1.1271&current=temperature_2m,weathercode');
+                const data = await res.json();
+
+                const temp = data.current.temperature_2m;
+                const code = data.current.weathercode;
+
+                const weatherMap = {
+                    0: "☀️ Clear",
+                    1: "🌤️ Mostly Clear",
+                    2: "⛅ Partly Cloudy",
+                    3: "☁️ Cloudy",
+                    45: "🌫️ Fog",
+                    61: "🌧️ Light Rain",
+                    63: "🌧️ Moderate Rain",
+                    80: "🌦️ Showers"
+                };
+
+                const description = weatherMap[code] || "🌥️ Weather";
+                weatherBanner.textContent = `${description}, ${temp}°C in Herne Bay`;
+                weatherBanner.style.display = 'block';
+                weatherBanner.classList.add('weather-banner');
+
+            } catch (error) {
+                console.error("Weather fetch failed:", error);
+            }
+
+            const sections = document.querySelectorAll('.fade-section');
+
+            const openingBanner = document.getElementById('openingStatus');
+            const now = new Date();
+            const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+            const hour = now.getHours();
+
+            // Example: open every day 11am–23pm (adjust as needed)
+            const isOpen = hour >= 11 && hour < 23;
+            let message = '';
+
+            if (isOpen) {
+                message = '✅ Open now – until 11:00 PM';
+                openingBanner.classList.add('open');
+            } else {
+                message = '❌ Closed – Opens at 11:00 AM';
+                openingBanner.classList.add('closed');
+            }
+
+            openingBanner.textContent = message;
+            openingBanner.style.display = 'block';
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => observer.observe(section));
         });
     </script>
 
