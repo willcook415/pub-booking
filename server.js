@@ -40,21 +40,28 @@ app.post('/api/test', (req, res) => {
   res.json({ message: 'Test successful!' });
 });
 
+const { Booking } = require('./models');
+
 app.put('/api/book/:id/arrived', async (req, res) => {
     const { id } = req.params;
     const { arrived } = req.body;
 
     try {
-        const result = await pool.query(
-            'UPDATE bookings SET arrived = $1 WHERE id = $2 RETURNING *',
-            [arrived, id]
-        );
-        res.json(result.rows[0]);
+        const booking = await Booking.findByPk(id);
+        if (!booking) {
+            return res.status(404).json({ error: 'Booking not found' });
+        }
+
+        booking.arrived = arrived;
+        await booking.save();
+
+        res.json(booking);
     } catch (error) {
         console.error('Failed to mark as arrived', error);
         res.status(500).json({ error: 'Failed to update booking status' });
     }
 });
+
 
 
 // 📬 Public booking endpoint (handles non-logged-in bookings)

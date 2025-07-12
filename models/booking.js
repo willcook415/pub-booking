@@ -19,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE,
     time: DataTypes.STRING,
     partySize: DataTypes.INTEGER,
-    specialRequests: DataTypes.STRING
+      specialRequests: DataTypes.STRING
+
+      arrived: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: false
+      }
   }, {
     sequelize,
     modelName: 'Booking',
