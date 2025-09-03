@@ -69,6 +69,8 @@
                     background: #f5cd66;
                 }
     </style>
+
+    <link rel="canonical" href="https://www.thecuriouscatpub.com/function-room.html">
 </head>
 <body>
     <nav>
@@ -165,7 +167,7 @@
                 <h2>Book a Viewing</h2>
                 <p>
                     Viewings are available by appointment. Please call us on <a href="tel:+441227283298">01227 283298</a>
-                     to discuss your event.
+                    to discuss your event.
                 </p>
             </div>
         </section>
@@ -179,24 +181,109 @@
         <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
     </footer>
 
-    <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-      hamburger.classList.toggle('active');
-    });
-
-    const sections = document.querySelectorAll('.fade-section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["BarOrPub","Restaurant"],
+          "name": "The Curious Cat",
+          "url": "https://www.thecuriouscatpub.com/",
+          "image": "https://www.thecuriouscatpub.com/images/homepage-background.avif",
+          "telephone": "+44 1227 283298",
+          "email": "thecuriouscatpub@gmail.com",
+          "priceRange": "££",
+          "servesCuisine": ["British", "Pub classics", "Sunday roast"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Canterbury Road, Herne Common",
+            "addressLocality": "Herne Bay",
+            "postalCode": "CT6 7JU",
+            "addressCountry": "GB"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.344273,
+            "longitude": 1.122335
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "12:00",
+              "closes": "23:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "12:00",
+              "closes": "18:00"
+            }
+          ],
+          "acceptsReservations": true,
+          "menu": [
+            "https://www.thecuriouscatpub.com/menus/standard-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/sunday-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/kids-menu.pdf"
+          ],
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100057213769428"
+          ],
+          "hasMap": "https://maps.google.com/?q=The+Curious+Cat+CT6+7JU"
         }
-      });
-    }, { threshold: 0.1 });
-    sections.forEach(section => observer.observe(section));
+    </script>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How many people can the function room hold?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Up to 80 guests (60 seated)." }
+            },
+            {
+              "@type": "Question",
+              "name": "How much is room hire?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Mon–Thu: £150. Fri–Sat: £300. Wakes (Mon–Fri, 6 hours): £100." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a deposit?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes, a £300 deposit secures your booking date." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you provide catering?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Buffets from £13pp (10 items £16pp, 12 items £18pp) and tailored set menus on request. Cheese platter for 10 is £45." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is there a projector and sound system?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes — a 120\" projector (free to use) and a sound system with Spotify streaming." }
+            }
+          ]
+        }
+    </script>
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active');
+        });
+
+        const sections = document.querySelectorAll('.fade-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
     </script>
 </body>
 </html>

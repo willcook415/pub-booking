@@ -171,6 +171,9 @@
             padding-top: 0;
         }
     </style>
+
+    <link rel="canonical" href="https://www.thecuriouscatpub.com/gallery.html">
+
 </head>
 <body>
     <nav>
@@ -220,6 +223,57 @@
         <img id="lbImg" src="" alt="" />
         <button class="lb-next" id="lbNext" aria-label="Next">›</button>
     </div>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["BarOrPub","Restaurant"],
+          "name": "The Curious Cat",
+          "url": "https://www.thecuriouscatpub.com/",
+          "image": "https://www.thecuriouscatpub.com/images/homepage-background.avif",
+          "telephone": "+44 1227 283298",
+          "email": "thecuriouscatpub@gmail.com",
+          "priceRange": "££",
+          "servesCuisine": ["British", "Pub classics", "Sunday roast"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Canterbury Road, Herne Common",
+            "addressLocality": "Herne Bay",
+            "postalCode": "CT6 7JU",
+            "addressCountry": "GB"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.344273,
+            "longitude": 1.122335
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "12:00",
+              "closes": "23:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "12:00",
+              "closes": "18:00"
+            }
+          ],
+          "acceptsReservations": true,
+          "menu": [
+            "https://www.thecuriouscatpub.com/menus/standard-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/sunday-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/kids-menu.pdf"
+          ],
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100057213769428"
+          ],
+          "hasMap": "https://maps.google.com/?q=The+Curious+Cat+CT6+7JU"
+        }
+    </script>
+
     <script>
         // Mobile nav
         const hamburger = document.getElementById('hamburger');

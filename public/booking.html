@@ -2,380 +2,430 @@
 
 <html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/><meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="stylesheet" href="shared.css" />
-<title>Book a Table – The Curious Cat Pub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="stylesheet" href="shared.css" />
+    <title>Book a Table – The Curious Cat Pub</title>
 
-<style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif !important;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background: #121212;
-      color: #e0e0e0;
-    }
-
-    header {
-      text-align: center;
-      margin: 2rem auto 1rem;
-      font-family: 'Lora', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: #dddddd;
-    }
-
-    main {
-      display: flex;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 600px;
-      background: #1b1b1b;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-
-    input, textarea, button {
-      margin-bottom: 1.2rem;
-      padding: 0.85rem;
-      border: 1px solid #333;
-      border-radius: 6px;
-      font-size: 1rem;
-      background: #262626;
-      color: #f0f0f0;
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    button {
-      background: #2f2f2f;
-      color: #f0f0f0;
-      font-weight: 600;
-      border: 1px solid #444;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: #3b3b3b;
-    }
-
-    #statusMessage {
-      text-align: center;
-      font-weight: bold;
-      margin-top: 0.5rem;
-    }
-
-    .confirmation {
-      color: #76ffb4;
-    }
-
-    .error {
-      color: #ff8080;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #666;
-      background: #181818;
-      margin-top: 3rem;
-    }
-
-    select[name="time"] {
-        background: #1e1e1e;
-        color: #fff;
-        padding: 0.75rem 1rem;
-        border: 1px solid #2a2a2a;
-        border-radius: 6px;
-        font-size: 1rem;
-        width: 100%;
-        appearance: none;
-    }
-
-    form select,
-    form input,
-    form textarea {
-        width: 100%;
-        background: #1e1e1e;
-        color: #fff;
-        padding: 0.75rem 1rem;
-        border: 1px solid #2a2a2a;
-        border-radius: 6px;
-        font-size: 1rem;
-        margin-bottom: 1rem;
-        box-sizing: border-box;
-    }
-
-        form select:focus,
-        form input:focus,
-        form textarea:focus {
-            outline: none;
-            border-color: var(--gold);
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif !important;
         }
 
-        form input:focus,
-        form textarea:focus,
-        form select:focus {
-            box-shadow: 0 0 6px var(--gold);
-        }
-
-    #statusMessage {
-        transition: opacity 0.4s ease;
-        opacity: 0;
-    }
-
-        #statusMessage.visible {
-            opacity: 1;
-        }
-
-    @media (max-width: 600px) {
-        main {
-            padding: 1rem;
-        }
-
-        form {
-            padding: 1.2rem;
-            font-size: 0.95rem;
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: #121212;
+            color: #e0e0e0;
         }
 
         header {
-            font-size: 1.8rem;
+            text-align: center;
+            margin: 2rem auto 1rem;
+            font-family: 'Lora', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #dddddd;
         }
-    }
 
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
 
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 600px;
+            background: #1b1b1b;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
 
-  </style>
+        input, textarea, button {
+            margin-bottom: 1.2rem;
+            padding: 0.85rem;
+            border: 1px solid #333;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #262626;
+            color: #f0f0f0;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: #2f2f2f;
+            color: #f0f0f0;
+            font-weight: 600;
+            border: 1px solid #444;
+            transition: background 0.3s;
+        }
+
+            button:hover {
+                background: #3b3b3b;
+            }
+
+        #statusMessage {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .confirmation {
+            color: #76ffb4;
+        }
+
+        .error {
+            color: #ff8080;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+            background: #181818;
+            margin-top: 3rem;
+        }
+
+        select[name="time"] {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+            appearance: none;
+        }
+
+        form select,
+        form input,
+        form textarea {
+            width: 100%;
+            background: #1e1e1e;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+            form select:focus,
+            form input:focus,
+            form textarea:focus {
+                outline: none;
+                border-color: var(--gold);
+            }
+
+            form input:focus,
+            form textarea:focus,
+            form select:focus {
+                box-shadow: 0 0 6px var(--gold);
+            }
+
+        #statusMessage {
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+            #statusMessage.visible {
+                opacity: 1;
+            }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem;
+            }
+
+            form {
+                padding: 1.2rem;
+                font-size: 0.95rem;
+            }
+
+            header {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <link rel="canonical" href="https://www.thecuriouscatpub.com/booking.html">
 </head>
 <body>
 
-<nav>
-<div class="logo">The Curious Cat</div>
-<div class="hamburger" id="hamburger">
-<span></span>
-<span></span>
-<span></span>
-</div>
-<ul id="navLinks">
-    <li><a href="index.html" class="text-link">Home</a></li>
-    <li><a href="about.html" class="text-link">About</a></li>
-    <li><a href="menus.html" class="text-link">Menus</a></li>
-    <li><a href="gallery.html" class="text-link">Gallery</a></li>
-    <li><a href="function-room.html" class="text-link active">Function Room</a></li>
-    <!--<li><a href="booking.html" class="text-link">Book</a></li>-->
-</ul>
-</nav>
+    <nav>
+        <div class="logo">The Curious Cat</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="navLinks">
+            <li><a href="index.html" class="text-link">Home</a></li>
+            <li><a href="about.html" class="text-link">About</a></li>
+            <li><a href="menus.html" class="text-link">Menus</a></li>
+            <li><a href="gallery.html" class="text-link">Gallery</a></li>
+            <li><a href="function-room.html" class="text-link active">Function Room</a></li>
+            <!--<li><a href="booking.html" class="text-link">Book</a></li>-->
+        </ul>
+    </nav>
 
-<header>Book a Table</header>
-<!--<main>
-    <form id="bookingForm" class="fade-section">
-        <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Reserve Your Spot</h2>
-        <input name="name" placeholder="Your Name" required="" type="text" />
-        <input name="email" placeholder="Your Email" required="" type="email" />
-        <input name="date" required="" type="date" id="dateInput" />
-        <select name="time" id="time" required>
-            <option value="">Select a Time</option>
-            <option value="11:00">11:00</option>
-            <option value="11:15">11:15</option>
-            <option value="11:30">11:30</option>
-            <option value="11:45">11:45</option>
-            <option value="12:00">12:00</option>
-            <option value="12:15">12:15</option>
-            <option value="12:30">12:30</option>
-            <option value="12:45">12:45</option>
-            <option value="13:00">13:00</option>
-            <option value="13:15">13:15</option>
-            <option value="13:30">13:30</option>
-            <option value="13:45">13:45</option>
-            <option value="14:00">14:00</option>
-            <option value="14:15">14:15</option>
-            <option value="14:30">14:30</option>
-            <option value="14:45">14:45</option>
-            <option value="15:00">15:00</option>
-            <option value="15:15">15:15</option>
-            <option value="15:30">15:30</option>
-            <option value="15:45">15:45</option>
-            <option value="16:00">16:00</option>
-            <option value="16:15">16:15</option>
-            <option value="16:30">16:30</option>
-            <option value="16:45">16:45</option>
-            <option value="17:00">17:00</option>
-            <option value="17:15">17:15</option>
-            <option value="17:30">17:30</option>
-            <option value="17:45">17:45</option>
-            <option value="18:00">18:00</option>
-            <option value="18:15">18:15</option>
-            <option value="18:30">18:30</option>
-            <option value="18:45">18:45</option>
-            <option value="19:00">19:00</option>
-            <option value="19:15">19:15</option>
-            <option value="19:30">19:30</option>
-            <option value="19:45">19:45</option>
-            <option value="20:00">20:00</option>
-            <option value="20:15">20:15</option>
-            <option value="20:30">20:30</option>
-            <option value="20:45">20:45</option>
-            <option value="21:00">21:00</option>
-        </select>
+    <header>Book a Table</header>
+    <!--<main>
+        <form id="bookingForm" class="fade-section">
+            <h2 style="text-align: center; font-size: 1.5rem; margin-bottom: 1rem;">Reserve Your Spot</h2>
+            <input name="name" placeholder="Your Name" required="" type="text" />
+            <input name="email" placeholder="Your Email" required="" type="email" />
+            <input name="date" required="" type="date" id="dateInput" />
+            <select name="time" id="time" required>
+                <option value="">Select a Time</option>
+                <option value="11:00">11:00</option>
+                <option value="11:15">11:15</option>
+                <option value="11:30">11:30</option>
+                <option value="11:45">11:45</option>
+                <option value="12:00">12:00</option>
+                <option value="12:15">12:15</option>
+                <option value="12:30">12:30</option>
+                <option value="12:45">12:45</option>
+                <option value="13:00">13:00</option>
+                <option value="13:15">13:15</option>
+                <option value="13:30">13:30</option>
+                <option value="13:45">13:45</option>
+                <option value="14:00">14:00</option>
+                <option value="14:15">14:15</option>
+                <option value="14:30">14:30</option>
+                <option value="14:45">14:45</option>
+                <option value="15:00">15:00</option>
+                <option value="15:15">15:15</option>
+                <option value="15:30">15:30</option>
+                <option value="15:45">15:45</option>
+                <option value="16:00">16:00</option>
+                <option value="16:15">16:15</option>
+                <option value="16:30">16:30</option>
+                <option value="16:45">16:45</option>
+                <option value="17:00">17:00</option>
+                <option value="17:15">17:15</option>
+                <option value="17:30">17:30</option>
+                <option value="17:45">17:45</option>
+                <option value="18:00">18:00</option>
+                <option value="18:15">18:15</option>
+                <option value="18:30">18:30</option>
+                <option value="18:45">18:45</option>
+                <option value="19:00">19:00</option>
+                <option value="19:15">19:15</option>
+                <option value="19:30">19:30</option>
+                <option value="19:45">19:45</option>
+                <option value="20:00">20:00</option>
+                <option value="20:15">20:15</option>
+                <option value="20:30">20:30</option>
+                <option value="20:45">20:45</option>
+                <option value="21:00">21:00</option>
+            </select>
 
-        <input name="partySize" placeholder="Party Size" required="" type="number" />
-<textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
-        <button type="submit">Submit Booking</button>
-        <div id="loadingSpinner" style="display: none; text-align: center;">Booking...</div>
-        <div id="statusMessage"></div>
-    </form>
-</main>-->
+            <input name="partySize" placeholder="Party Size" required="" type="number" />
+    <textarea name="specialRequests" placeholder="Any special requests? (Optional)"></textarea>
+            <button type="submit">Submit Booking</button>
+            <div id="loadingSpinner" style="display: none; text-align: center;">Booking...</div>
+            <div id="statusMessage"></div>
+        </form>
+    </main>-->
 
-<footer>
-    © 2025 The Curious Cat Pub. All rights reserved.<br />
-    <h2 class="footer-title">The Curious Cat</h2>
-    <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
-    <p>Phone: +44 1227 283298</p>
-    <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
-</footer>
+    <footer>
+        © 2025 The Curious Cat Pub. All rights reserved.<br />
+        <h2 class="footer-title">The Curious Cat</h2>
+        <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+        <p>Phone: +44 1227 283298</p>
+        <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
+    </footer>
 
-<!-- DO NOT EDIT JS -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const statusDiv = document.getElementById('statusMessage');
-
-        const spinner = document.getElementById('loadingSpinner');
-        spinner.style.display = 'block';
-        statusDiv.textContent = '';
-        statusDiv.className = '';
-        spinner.style.display = 'none';
-
-        statusDiv.classList.add('visible');
-
-
-
-        const sections = document.querySelectorAll('.fade-section');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, { threshold: 0.1 });
-
-        sections.forEach(section => observer.observe(section));
-
-        const dateField = document.getElementById('dateInput');
-        const today = new Date().toISOString().split("T")[0];
-        dateField.min = today;
-
-        const timeField = document.getElementById('time');
-        const allowedTimes = Array.from(timeField.options).map(opt => opt.value).filter(v => v);
-
-        dateField.addEventListener('change', () => {
-            const selectedDate = new Date(dateField.value);
-            const now = new Date();
-
-            // Clear all options first (except placeholder)
-            timeField.innerHTML = '<option value="">Select a Time</option>';
-
-            const isToday = selectedDate.toDateString() === now.toDateString();
-
-            allowedTimes.forEach(time => {
-                const [hours, minutes] = time.split(':').map(Number);
-                const timeDate = new Date(selectedDate);
-                timeDate.setHours(hours, minutes, 0, 0);
-
-                if (!isToday || timeDate > now) {
-                    const option = document.createElement('option');
-                    option.value = time;
-                    option.textContent = time;
-                    timeField.appendChild(option);
-                }
-            });
-        });
-
-
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', function () {
-            navLinks.classList.toggle('show');
-            hamburger.classList.toggle('active');
-        });
-
-        const dateInput = document.querySelector('input[name="date"]');
-        dateInput.addEventListener('input', () => {
-            // Force only valid YYYY-MM-DD pattern
-            const regex = /^\d{4}-\d{2}-\d{2}$/;
-
-            if (dateInput.value.length > 10) {
-                dateInput.value = dateInput.value.slice(0, 10);
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["BarOrPub","Restaurant"],
+          "name": "The Curious Cat",
+          "url": "https://www.thecuriouscatpub.com/",
+          "image": "https://www.thecuriouscatpub.com/images/homepage-background.avif",
+          "telephone": "+44 1227 283298",
+          "email": "thecuriouscatpub@gmail.com",
+          "priceRange": "££",
+          "servesCuisine": ["British", "Pub classics", "Sunday roast"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Canterbury Road, Herne Common",
+            "addressLocality": "Herne Bay",
+            "postalCode": "CT6 7JU",
+            "addressCountry": "GB"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.344273,
+            "longitude": 1.122335
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "12:00",
+              "closes": "23:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "12:00",
+              "closes": "18:00"
             }
+          ],
+          "acceptsReservations": true,
+          "menu": [
+            "https://www.thecuriouscatpub.com/menus/standard-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/sunday-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/kids-menu.pdf"
+          ],
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100057213769428"
+          ],
+          "hasMap": "https://maps.google.com/?q=The+Curious+Cat+CT6+7JU"
+        }
+    </script>
 
-            if (!regex.test(dateInput.value) && dateInput.value.length === 10) {
-                alert("Please enter a valid date in YYYY-MM-DD format.");
-                dateInput.value = "";
-            }
-        });
 
-        document.getElementById('bookingForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
+    <!-- DO NOT EDIT JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const statusDiv = document.getElementById('statusMessage');
 
-            const form = e.target;
-            const data = {
-                name: form.name.value,
-                email: form.email.value,
-                date: form.date.value,
-                time: form.time.value,
-                partySize: form.partySize.value,
-                specialRequests: form.specialRequests.value
-            };
-
-            statusDiv.textContent = 'Booking...';
+            const spinner = document.getElementById('loadingSpinner');
+            spinner.style.display = 'block';
+            statusDiv.textContent = '';
             statusDiv.className = '';
+            spinner.style.display = 'none';
 
-            if (parseInt(data.partySize) > 8) {
-                statusDiv.textContent = 'For groups of 9 or more, please call us directly to book.';
-                statusDiv.className = 'error visible';
-                return;
-            }
+            statusDiv.classList.add('visible');
 
-            try {
-                const res = await fetch('https://pub-booking-backend.onrender.com/api/book', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+
+
+            const sections = document.querySelectorAll('.fade-section');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
                 });
+            }, { threshold: 0.1 });
 
-                const result = await res.json();
+            sections.forEach(section => observer.observe(section));
 
-                if (res.ok) {
-                    statusDiv.textContent = result.message;
-                    statusDiv.className = 'confirmation visible';
-                    form.reset();
-                } else {
-                    statusDiv.textContent = result.message || 'Booking failed.';
+            const dateField = document.getElementById('dateInput');
+            const today = new Date().toISOString().split("T")[0];
+            dateField.min = today;
+
+            const timeField = document.getElementById('time');
+            const allowedTimes = Array.from(timeField.options).map(opt => opt.value).filter(v => v);
+
+            dateField.addEventListener('change', () => {
+                const selectedDate = new Date(dateField.value);
+                const now = new Date();
+
+                // Clear all options first (except placeholder)
+                timeField.innerHTML = '<option value="">Select a Time</option>';
+
+                const isToday = selectedDate.toDateString() === now.toDateString();
+
+                allowedTimes.forEach(time => {
+                    const [hours, minutes] = time.split(':').map(Number);
+                    const timeDate = new Date(selectedDate);
+                    timeDate.setHours(hours, minutes, 0, 0);
+
+                    if (!isToday || timeDate > now) {
+                        const option = document.createElement('option');
+                        option.value = time;
+                        option.textContent = time;
+                        timeField.appendChild(option);
+                    }
+                });
+            });
+
+
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function () {
+                navLinks.classList.toggle('show');
+                hamburger.classList.toggle('active');
+            });
+
+            const dateInput = document.querySelector('input[name="date"]');
+            dateInput.addEventListener('input', () => {
+                // Force only valid YYYY-MM-DD pattern
+                const regex = /^\d{4}-\d{2}-\d{2}$/;
+
+                if (dateInput.value.length > 10) {
+                    dateInput.value = dateInput.value.slice(0, 10);
+                }
+
+                if (!regex.test(dateInput.value) && dateInput.value.length === 10) {
+                    alert("Please enter a valid date in YYYY-MM-DD format.");
+                    dateInput.value = "";
+                }
+            });
+
+            document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const form = e.target;
+                const data = {
+                    name: form.name.value,
+                    email: form.email.value,
+                    date: form.date.value,
+                    time: form.time.value,
+                    partySize: form.partySize.value,
+                    specialRequests: form.specialRequests.value
+                };
+
+                statusDiv.textContent = 'Booking...';
+                statusDiv.className = '';
+
+                if (parseInt(data.partySize) > 8) {
+                    statusDiv.textContent = 'For groups of 9 or more, please call us directly to book.';
+                    statusDiv.className = 'error visible';
+                    return;
+                }
+
+                try {
+                    const res = await fetch('https://pub-booking-backend.onrender.com/api/book', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await res.json();
+
+                    if (res.ok) {
+                        statusDiv.textContent = result.message;
+                        statusDiv.className = 'confirmation visible';
+                        form.reset();
+                    } else {
+                        statusDiv.textContent = result.message || 'Booking failed.';
+                        statusDiv.className = 'error visible';
+                    }
+                } catch (err) {
+                    console.error(err);
+                    statusDiv.textContent = 'An error occurred. Please try again later.';
                     statusDiv.className = 'error visible';
                 }
-            } catch (err) {
-                console.error(err);
-                statusDiv.textContent = 'An error occurred. Please try again later.';
-                statusDiv.className = 'error visible';
-            }
+            });
         });
-    });
-  </script>
+    </script>
 </body>
 </html>

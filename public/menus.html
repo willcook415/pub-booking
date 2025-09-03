@@ -1,178 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menus – The Curious Cat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="shared.css">
-  <style>
-    :root {
-      --gold: #e0b84c;
-      --dark-bg: #181818;
-      --darker-bg: #121212;
-      --text-light: #e0e0e0;
-      --text-muted: #cccccc;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menus – The Curious Cat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="shared.css">
+    <style>
+        :root {
+            --gold: #e0b84c;
+            --dark-bg: #181818;
+            --darker-bg: #121212;
+            --text-light: #e0e0e0;
+            --text-muted: #cccccc;
+        }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
 
 
-    body {
-      margin: 0;
-      background: var(--dark-bg);
-      color: var(--text-light);
-    }
+        body {
+            margin: 0;
+            background: var(--dark-bg);
+            color: var(--text-light);
+        }
 
-      .logo {
-          font-size: 1.8rem;
-          font-weight: 600;
-          color: var(--gold);
-      }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
 
-    .hero-section {
-      text-align: center;
-      padding: 4rem 2rem 2rem;
-      background: var(--darker-bg);
-    }
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background: var(--darker-bg);
+        }
 
-    .hero-section h1 {
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
+            .hero-section h1 {
+                font-size: 2.5rem;
+                color: var(--gold);
+                margin-bottom: 1rem;
+            }
 
-    .hero-section p {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-    }
+            .hero-section p {
+                font-size: 1.1rem;
+                color: var(--text-muted);
+            }
 
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-    .menu-card {
-      background: #222;
-      border: 1px solid var(--gold);
-      border-radius: 10px;
-      padding: 2rem;
-      text-align: center;
-      transition: transform 0.3s;
-    }
+        .menu-card {
+            background: #222;
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
 
-    .menu-card:hover {
-      transform: translateY(-5px);
-    }
+            .menu-card:hover {
+                transform: translateY(-5px);
+            }
 
-    .menu-card h2 {
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
+            .menu-card h2 {
+                color: var(--gold);
+                margin-bottom: 1rem;
+            }
 
-    .menu-card a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: var(--gold);
-      color: #000;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
+            .menu-card a {
+                display: inline-block;
+                margin-top: 1rem;
+                padding: 0.6rem 1.2rem;
+                background: var(--gold);
+                color: #000;
+                text-decoration: none;
+                font-weight: 600;
+                border-radius: 6px;
+                transition: background 0.2s;
+            }
 
-    .menu-card a:hover {
-      background: #f5cd66;
-    }
+                .menu-card a:hover {
+                    background: #f5cd66;
+                }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #ccc;
-      background: #202020;
-      margin-top: 4rem;
-    }
-  </style>
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #ccc;
+            background: #202020;
+            margin-top: 4rem;
+        }
+    </style>
+
+    <link rel="canonical" href="https://www.thecuriouscatpub.com/menus.html">
 </head>
 <body>
-  <nav>
-    <div class="logo">The Curious Cat</div>
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <ul id="navLinks">
-        <li><a href="index.html" class="text-link">Home</a></li>
-        <li><a href="about.html" class="text-link">About</a></li>
-        <li><a href="menus.html" class="text-link">Menus</a></li>
-        <li><a href="gallery.html" class="text-link">Gallery</a></li>
-        <li><a href="function-room.html" class="text-link active">Function Room</a></li>
-        <!--<li><a href="booking.html" class="text-link">Book</a></li>-->
-    </ul>
-  </nav>
+    <nav>
+        <div class="logo">The Curious Cat</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="navLinks">
+            <li><a href="index.html" class="text-link">Home</a></li>
+            <li><a href="about.html" class="text-link">About</a></li>
+            <li><a href="menus.html" class="text-link">Menus</a></li>
+            <li><a href="gallery.html" class="text-link">Gallery</a></li>
+            <li><a href="function-room.html" class="text-link active">Function Room</a></li>
+            <!--<li><a href="booking.html" class="text-link">Book</a></li>-->
+        </ul>
+    </nav>
 
-  <section class="hero-section">
-    <h1>Our Menus</h1>
-    <p>From comforting pub classics to Sunday favourites and options for the little ones — there's something for everyone at The Curious Cat.</p>
-  </section>
+    <section class="hero-section">
+        <h1>Our Menus</h1>
+        <p>From comforting pub classics to Sunday favourites and options for the little ones — there's something for everyone at The Curious Cat.</p>
+    </section>
 
-  <section class="menu-grid fade-section">
-    <div class="menu-card">
-      <h2>Main Menu</h2>
-      <a href="menus/standard-menu.pdf" target="_blank">View Menu</a>
-    </div>
-    <div class="menu-card">
-      <h2>Sunday Roast</h2>
-      <a href="menus/sunday-menu.pdf" target="_blank">View Menu</a>
-    </div>
-    <div class="menu-card">
-      <h2>Kids Menu</h2>
-      <a href="menus/kids-menu.pdf" target="_blank">View Menu</a>
-    </div>
-  </section>
+    <section class="menu-grid fade-section">
+        <div class="menu-card">
+            <h2>Main Menu</h2>
+            <a href="menus/standard-menu.pdf" target="_blank">View Menu</a>
+        </div>
+        <div class="menu-card">
+            <h2>Sunday Roast</h2>
+            <a href="menus/sunday-menu.pdf" target="_blank">View Menu</a>
+        </div>
+        <div class="menu-card">
+            <h2>Kids Menu</h2>
+            <a href="menus/kids-menu.pdf" target="_blank">View Menu</a>
+        </div>
+    </section>
 
-  <footer>
-      &copy; 2025 The Curious Cat Pub. All rights reserved.<br>
-      <h2 class="footer-title">The Curious Cat</h2>
-      <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
-      <p>Phone: +44 1227 283298</p>
-      <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
-  </footer>
+    <footer>
+        &copy; 2025 The Curious Cat Pub. All rights reserved.<br>
+        <h2 class="footer-title">The Curious Cat</h2>
+        <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+        <p>Phone: +44 1227 283298</p>
+        <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
+    </footer>
 
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": ["BarOrPub","Restaurant"],
+          "name": "The Curious Cat",
+          "url": "https://www.thecuriouscatpub.com/",
+          "image": "https://www.thecuriouscatpub.com/images/homepage-background.avif",
+          "telephone": "+44 1227 283298",
+          "email": "thecuriouscatpub@gmail.com",
+          "priceRange": "££",
+          "servesCuisine": ["British", "Pub classics", "Sunday roast"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Canterbury Road, Herne Common",
+            "addressLocality": "Herne Bay",
+            "postalCode": "CT6 7JU",
+            "addressCountry": "GB"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 51.344273,
+            "longitude": 1.122335
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+              "opens": "12:00",
+              "closes": "23:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "12:00",
+              "closes": "18:00"
+            }
+          ],
+          "acceptsReservations": true,
+          "menu": [
+            "https://www.thecuriouscatpub.com/menus/standard-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/sunday-menu.pdf",
+            "https://www.thecuriouscatpub.com/menus/kids-menu.pdf"
+          ],
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100057213769428"
+          ],
+          "hasMap": "https://maps.google.com/?q=The+Curious+Cat+CT6+7JU"
+        }
+    </script>
 
-    hamburger.addEventListener('click', function () {
-        navLinks.classList.toggle('show');
-        hamburger.classList.toggle('active'); // ✨ This is the magic line
-    });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const sections = document.querySelectorAll('.fade-section');
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, { threshold: 0.1 });
+        hamburger.addEventListener('click', function () {
+            navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active'); // ✨ This is the magic line
+        });
 
-        sections.forEach(section => observer.observe(section));
-    });
-</script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-section');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
 </body>
 </html>
