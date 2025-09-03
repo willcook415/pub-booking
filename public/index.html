@@ -599,9 +599,19 @@
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
-        hamburger.addEventListener('click', function () {
-            navLinks.classList.toggle('show');
-            hamburger.classList.toggle('active'); // ✨ This is the magic line
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active', open);
+            document.body.classList.toggle('no-scroll', open);
+        });
+
+        // close menu after tapping a link (nice UX)
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                hamburger.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
         });
 
         const observer = new IntersectionObserver(entries => {

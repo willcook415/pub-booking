@@ -276,6 +276,12 @@ a {
   }
 }
 
+body.no-scroll {
+    height: 100dvh;
+    overflow: hidden;
+}
+
+
 /* SECTION STYLING */
 .section {
   display: flex;
