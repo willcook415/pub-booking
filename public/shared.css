@@ -240,11 +240,12 @@ a {
         border-top: 1px solid var(--gold);
     }
 
-    nav ul.show {
-        max-height: 300px; /* adjust as needed for your link count */
-        opacity: 1;
-        padding: 1rem 2rem;
-    }
+        nav ul.show {
+            max-height: 85vh; /* or: calc(100vh - 70px) */
+            overflow-y: auto;
+            opacity: 1;
+            padding: 1rem 2rem;
+        }
   nav ul li {
     padding: 0.5rem 0;
   }
