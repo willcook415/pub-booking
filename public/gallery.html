@@ -173,6 +173,26 @@
     </style>
 
     <link rel="canonical" href="https://www.thecuriouscatpub.com/gallery.html">
+    <meta name="description" content="Food, drinks, interiors, events and our function room at The Curious Cat." />
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K0RFVME3MC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-K0RFVME3MC');
+    </script>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thecuriouscatpub.com/">
+    <meta property="og:title" content="The Curious Cat – Modern Country Pub in Herne Bay">
+    <meta property="og:description" content="Fresh seasonal menus, Sunday roasts, and a private function room for up to 80.">
+    <meta property="og:image" content="https://www.thecuriouscatpub.com/images/og-default.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Curious Cat – Herne Bay">
+    <meta name="twitter:description" content="Great food, cosy vibes, function room hire.">
+    <meta name="twitter:image" content="https://www.thecuriouscatpub.com/images/og-default.jpg">
 
 </head>
 <body>
@@ -186,7 +206,7 @@
             <li><a href="about.html" class="text-link">About</a></li>
             <li><a href="menus.html" class="text-link">Menus</a></li>
             <li><a href="gallery.html" class="text-link">Gallery</a></li>
-            <li><a href="function-room.html" class="text-link active">Function Room</a></li>
+            <li><a href="function-room.html" class="text-link">Function Room</a></li>
         </ul>
     </nav>
 
@@ -394,6 +414,14 @@
 
         // Initial render
         renderGrid('all');
+    </script>
+    <script>
+        const here = location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a.text-link').forEach(a => {
+            const href = a.getAttribute('href');
+            const isHome = (href === 'index.html' && (here === '' || here === 'index.html'));
+            a.classList.toggle('active', href === here || isHome);
+        });
     </script>
 
 </body>
