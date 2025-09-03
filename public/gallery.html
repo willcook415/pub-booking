@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery – The Curious Cat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="shared.css" />
+
+    <style>
+        /* Page-specific polish, keeps your site’s dark + gold look */
+        .hero {
+            text-align: center;
+            padding: 3rem 1.5rem 1rem;
+            background: var(--bg-dark);
+            border-bottom: 2px solid rgba(217,164,65,0.25);
+        }
+
+            .hero h1 {
+                margin: 0 0 0.5rem;
+            }
+
+            .hero p {
+                color: var(--text-muted);
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+        /* Filter buttons */
+        .filters {
+            display: flex;
+            gap: .5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 1rem 1rem 0;
+            margin: 0 auto;
+            max-width: 1100px;
+        }
+
+        .filter-btn {
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: #fff;
+            padding: .45rem .9rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+            .filter-btn.active, .filter-btn:hover {
+                background: var(--gold);
+                color: #111;
+                box-shadow: 0 0 10px rgba(217,164,65,.35);
+            }
+
+        /* Responsive grid */
+        .gallery-wrap {
+            max-width: 1100px;
+            margin: 1.25rem auto 3rem;
+            padding: 0 1rem 1rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: .75rem;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        }
+
+        .tile {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #222;
+            border: 1px solid #333;
+            box-shadow: 0 2px 12px rgba(0,0,0,.35);
+            cursor: zoom-in;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+            .tile:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 18px rgba(217,164,65,.18);
+            }
+
+            .tile img {
+                width: 100%;
+                height: 240px;
+                object-fit: cover;
+                display: block;
+                filter: contrast(1.03);
+                transition: transform .4s ease;
+            }
+
+            .tile:hover img {
+                transform: scale(1.03);
+            }
+
+        .chip {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0,0,0,.55);
+            border: 1px solid rgba(217,164,65,.6);
+            color: #fff;
+            padding: .25rem .5rem;
+            border-radius: 6px;
+            font-size: .8rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 1rem;
+        }
+
+            .lightbox.open {
+                display: flex;
+            }
+
+            .lightbox img {
+                max-width: 92vw;
+                max-height: 85vh;
+                border-radius: 10px;
+                box-shadow: 0 0 24px rgba(0,0,0,.6);
+            }
+
+        .lb-close, .lb-prev, .lb-next {
+            position: absolute;
+            top: 16px;
+            background: rgba(0,0,0,.6);
+            color: #fff;
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: .5rem .8rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all .2s ease;
+        }
+
+        .lb-close {
+            right: 16px;
+        }
+
+        .lb-prev {
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lb-next {
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+            .lb-close:hover, .lb-prev:hover, .lb-next:hover {
+                background: var(--gold);
+                color: #111;
+                box-shadow: 0 0 12px rgba(217,164,65,.35);
+            }
+
+        /* Fade-in reuse */
+        .gallery-wrap.fade-section {
+            padding-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">The Curious Cat</div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="navLinks">
+            <li><a href="index.html" class="text-link">Home</a></li>
+            <li><a href="about.html" class="text-link">About</a></li>
+            <li><a href="menus.html" class="text-link">Menus</a></li>
+            <li><a href="gallery.html" class="text-link">Gallery</a></li>
+            <li><a href="function-room.html" class="text-link active">Function Room</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Gallery</h1>
+        <p>Food highlights, cosy corners, the function room glow — a little taste of what to expect at The Curious Cat.</p>
+    </header>
+
+    <section class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+        <button class="filter-btn" data-filter="drinks">Drinks</button>
+        <button class="filter-btn" data-filter="interior">Interiors</button>
+        <button class="filter-btn" data-filter="events">Events</button>
+        <button class="filter-btn" data-filter="garden">Garden</button>
+    </section>
+
+    <main class="gallery-wrap fade-section">
+        <div id="galleryGrid" class="grid" aria-live="polite"></div>
+    </main>
+
+    <footer>
+        &copy; 2025 The Curious Cat Pub. All rights reserved.<br>
+        <h2 class="footer-title">The Curious Cat</h2>
+        <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+        <p>Phone: +44 1227 283298</p>
+        <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+        <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+        <img id="lbImg" src="" alt="" />
+        <button class="lb-next" id="lbNext" aria-label="Next">›</button>
+    </div>
+    <script>
+        // Mobile nav
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active');
+        });
+
+        // Fade-in
+        const sections = document.querySelectorAll('.fade-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        /* ===============================
+           YOUR IMAGES
+           =============================== */
+        const imagesData = [
+            { src: "images/gallery/image1.avif", category: "food", alt: "Placeholder" },
+            { src: "images/gallery/image2.avif", category: "food", alt: "Placeholder" },
+            { src: "images/gallery/image3.avif", category: "food", alt: "Placeholder" },
+            { src: "images/gallery/image4.avif", category: "food", alt: "Placeholder" },
+            { src: "images/gallery/image5.avif", category: "drinks", alt: "Placeholder" }
+        ];
+
+        // State for the filtered/visible set + current index
+        const grid = document.getElementById('galleryGrid');
+        let currentList = imagesData.slice();   // what’s currently visible
+        let currentIndex = 0;                   // index inside currentList
+
+        function renderGrid(filter = 'all') {
+            grid.innerHTML = '';
+            currentList = imagesData.filter(i => filter === 'all' ? true : i.category === filter);
+
+            currentList.forEach((img, idx) => {
+                const tile = document.createElement('div');
+                tile.className = 'tile';
+                tile.dataset.index = idx;
+                tile.dataset.category = img.category;
+
+                const image = document.createElement('img');
+                image.src = img.src;
+                image.alt = img.alt || "Gallery image";
+                image.loading = 'lazy';
+
+                const chip = document.createElement('div');
+                chip.className = 'chip';
+                chip.textContent = img.category.charAt(0).toUpperCase() + img.category.slice(1);
+
+                tile.appendChild(image);
+                tile.appendChild(chip);
+                tile.addEventListener('click', () => openLightbox(idx)); // <-- use filtered index
+                grid.appendChild(tile);
+            });
+
+            if (!currentList.length) {
+                const p = document.createElement('p');
+                p.style.textAlign = 'center';
+                p.style.color = 'var(--text-muted)';
+                p.textContent = 'No images in this category yet.';
+                grid.appendChild(p);
+            }
+        }
+
+        // Filters
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderGrid(btn.dataset.filter);
+            });
+        });
+
+        // Lightbox controls (operate on currentList, not imagesData)
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbClose = document.getElementById('lbClose');
+        const lbPrev = document.getElementById('lbPrev');
+        const lbNext = document.getElementById('lbNext');
+
+        function openLightbox(i) {
+            if (!currentList.length) return;
+            currentIndex = i;
+            lbImg.src = currentList[i].src;
+            lbImg.alt = currentList[i].alt || 'Gallery image';
+            lb.classList.add('open');
+        }
+        function closeLightbox() { lb.classList.remove('open'); }
+        function prevImage() {
+            if (!currentList.length) return;
+            currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
+            openLightbox(currentIndex);
+        }
+        function nextImage() {
+            if (!currentList.length) return;
+            currentIndex = (currentIndex + 1) % currentList.length;
+            openLightbox(currentIndex);
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lbPrev.addEventListener('click', prevImage);
+        lbNext.addEventListener('click', nextImage);
+        lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+        document.addEventListener('keydown', (e) => {
+            if (!lb.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        // Initial render
+        renderGrid('all');
+    </script>
+
+</body>
+</html>

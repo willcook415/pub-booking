@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function Room – The Curious Cat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="shared.css" />
+    <style>
+        .hero-banner {
+            position: relative;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            background: url('images/function-room-hero.jpg') center/cover no-repeat;
+            border-bottom: 3px solid var(--gold);
+        }
+
+            .hero-banner h1 {
+                background: rgba(0,0,0,0.5);
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                font-size: 2.2rem;
+            }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: #222;
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+        }
+
+            .info-card h3 {
+                color: var(--gold);
+                margin-bottom: 1rem;
+            }
+
+        .pdf-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+            .pdf-links a {
+                background: var(--gold);
+                color: #111;
+                padding: 0.75rem 1.5rem;
+                border-radius: 6px;
+                font-weight: 600;
+                text-decoration: none;
+                transition: background 0.3s;
+            }
+
+                .pdf-links a:hover {
+                    background: #f5cd66;
+                }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">The Curious Cat</div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul id="navLinks">
+            <li><a href="index.html" class="text-link">Home</a></li>
+            <li><a href="about.html" class="text-link">About</a></li>
+            <li><a href="menus.html" class="text-link">Menus</a></li>
+            <li><a href="gallery.html" class="text-link">Gallery</a></li>
+            <li><a href="function-room.html" class="text-link active">Function Room</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-banner">
+        <h1>Private Function Room Hire</h1>
+    </header>
+
+    <main>
+        <section class="section fade-section">
+            <div class="text">
+                <h2>Celebrate in Style</h2>
+                <p>
+                    At The Curious Cat we cater for birthdays, weddings, anniversaries, wakes, christenings,
+                    Christmas parties, corporate events and more. Our private function room offers everything
+                    you need for a memorable occasion.
+                </p>
+            </div>
+            <img src="images/function-room.avif" alt="Function room interior">
+        </section>
+
+        <section class="section fade-section">
+            <div class="text">
+                <h2>Room Details</h2>
+                <ul>
+                    <li>Up to 80 guests (60 seated)</li>
+                    <li>Fully stocked private bar</li>
+                    <li>Projector with 120" screen (free use)</li>
+                    <li>Sound system with Spotify streaming</li>
+                    <li>Flexible table layouts & decoration options</li>
+                </ul>
+            </div>
+            <img src="images/function-bar.avif" alt="Function room bar area">
+        </section>
+
+        <section class="section fade-section">
+            <div class="text">
+                <h2>Food & Drink Options</h2>
+                <p>
+                    We offer extensive buffet menus starting from £13 per person, as well as tailored set menus
+                    prepared fresh by our chefs. All menus can be adapted for dietary requirements.
+                </p>
+                <p>Add a cheese platter for £45 (10 persons). Hot drinks can also be provided for wakes at £2pp.</p>
+            </div>
+            <img src="images/function-buffet.avif" alt="Buffet food selection">
+        </section>
+
+        <section class="section fade-section">
+            <div class="text">
+                <h2>Hire Costs</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Mon–Thu</h3>
+                        <p>£150 room hire</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Fri–Sat</h3>
+                        <p>£300 room hire</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Wakes</h3>
+                        <p>£100 (6 hours, Mon–Fri)</p>
+                    </div>
+                </div>
+                <p style="margin-top:1rem;"><strong>Deposit:</strong> £300 required to secure your booking.</p>
+            </div>
+        </section>
+
+        <section class="section fade-section">
+            <div class="text">
+                <h2>Download Full Details</h2>
+                <p>For sample menus, buffet options, and full hire terms, download our info packs below:</p>
+                <div class="pdf-links">
+                    <a href="Function Room Hire 2025.pdf" target="_blank">Function Hire PDF</a>
+                    <a href="Wake2025.pdf" target="_blank">Wake Info PDF</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-section">
+            <div class="text">
+                <h2>Book a Viewing</h2>
+                <p>
+                    Viewings are available by appointment. Please call us on <a href="tel:+441227283298">01227 283298</a>
+                     to discuss your event.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 The Curious Cat Pub. All rights reserved.<br>
+        <h2 class="footer-title">The Curious Cat</h2>
+        <strong>The Curious Cat, Canterbury Road, CT6 7JU, Herne Bay, England</strong>
+        <p>Phone: +44 1227 283298</p>
+        <p>Mon–Sat: 12–11pm &nbsp; | &nbsp; Sun: 12–6pm</p>
+    </footer>
+
+    <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      hamburger.classList.toggle('active');
+    });
+
+    const sections = document.querySelectorAll('.fade-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
