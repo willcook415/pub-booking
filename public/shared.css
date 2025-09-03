@@ -242,16 +242,35 @@ a {
     }
 
         nav ul.show {
-            max-height: calc(100dvh - 70px); /* or: calc(100vh - 70px) */
+            position: fixed;
+            top: 64px; /* ~header height (tweak to 56–72px if needed) */
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* fill the screen and allow scrolling */
+            max-height: none;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            /* visuals */
+            background: var(--bg-dark);
             opacity: 1;
-            padding: 1rem 2rem;
-            padding-bottom: env(safe-area-inset-bottom);
+            padding: 1rem 2rem max(env(safe-area-inset-bottom), 1.25rem);
+            box-shadow: 0 8px 24px rgba(0,0,0,.35);
         }
   nav ul li {
     padding: 0.5rem 0;
   }
+
+    nav ul li a {
+        display: block;
+        padding: .9rem 0;
+        font-size: 1.1rem;
+    }
+
+    nav ul li + li {
+        border-top: 1px solid rgba(255,255,255,.06);
+    }
+
   .hamburger {
     display: flex;
   }
