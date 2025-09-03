@@ -229,6 +229,7 @@ a {
         position: absolute;
         top: 100%;
         right: 0;
+        left: 0;
         background-color: var(--bg-dark);
         width: 100%;
         overflow: hidden;
@@ -241,10 +242,12 @@ a {
     }
 
         nav ul.show {
-            max-height: 85vh; /* or: calc(100vh - 70px) */
+            max-height: calc(100dvh - 70px); /* or: calc(100vh - 70px) */
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             opacity: 1;
             padding: 1rem 2rem;
+            padding-bottom: env(safe-area-inset-bottom);
         }
   nav ul li {
     padding: 0.5rem 0;
