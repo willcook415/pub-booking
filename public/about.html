@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="shared.css?v=5" />
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>About – The Curious Cat Pub</title>
@@ -195,9 +195,19 @@
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
-        hamburger.addEventListener('click', function () {
-            navLinks.classList.toggle('show');
-            hamburger.classList.toggle('active'); // ✨ This is the magic line
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active', open);
+            document.body.classList.toggle('no-scroll', open);
+        });
+
+        // close menu after tapping a link (nice UX)
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                hamburger.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
         });
 
         document.addEventListener('DOMContentLoaded', () => {

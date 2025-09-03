@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Function Room – The Curious Cat</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="shared.css?v=5" />
     <style>
         .hero-banner {
             position: relative;
@@ -290,9 +290,20 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
+
         hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('show');
-            hamburger.classList.toggle('active');
+            const open = navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active', open);
+            document.body.classList.toggle('no-scroll', open);
+        });
+
+        // close menu after tapping a link (nice UX)
+        document.querySelectorAll('nav a').forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+                hamburger.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
         });
 
         const sections = document.querySelectorAll('.fade-section');
