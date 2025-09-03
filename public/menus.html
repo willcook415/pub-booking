@@ -234,7 +234,6 @@
             document.body.classList.toggle('no-scroll', open);
         });
 
-        // close menu after tapping a link (nice UX)
         document.querySelectorAll('nav a').forEach(a => {
             a.addEventListener('click', () => {
                 navLinks.classList.remove('show');
