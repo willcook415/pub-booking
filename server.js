@@ -8,13 +8,26 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 
 // Middleware
+const allowedOrigins = [
+    'https://thecuriouscatpub.netlify.app',
+    'https://thecuriouscatadmin.netlify.app',
+    'https://thecuriouscatpub.com',
+    'https://www.thecuriouscatpub.com',
+    'http://localhost:3000',     // React dev
+    'http://localhost:5173',     // Vite dev
+    'http://127.0.0.1:5500',     // VSCode Live Server (common)
+];
+
+// Allow localhost and file:// (Origin === null) in dev
 app.use(cors({
-  origin: [
-    'https://thecuriouscatpub.netlify.app',       // customer booking page
-    'https://thecuriouscatadmin.netlify.app'      // admin dashboard
-  ],
-  credentials: true,
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true); // allow file://, curl, Postman during dev
+        if (allowedOrigins.includes(origin)) return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
 }));
+
 app.use(bodyParser.json());
 // app.use(express.static('public'));
 
@@ -41,28 +54,6 @@ app.post('/api/test', (req, res) => {
 });
 
 const { Booking } = require('./models');
-
-app.put('/api/book/:id/arrived', async (req, res) => {
-    const { id } = req.params;
-    const { arrived } = req.body;
-
-    try {
-        const booking = await Booking.findByPk(id);
-        if (!booking) {
-            return res.status(404).json({ error: 'Booking not found' });
-        }
-
-        booking.arrived = arrived;
-        await booking.save();
-
-        res.json(booking);
-    } catch (error) {
-        console.error('Failed to mark as arrived', error);
-        res.status(500).json({ error: 'Failed to update booking status' });
-    }
-});
-
-
 
 // 📬 Public booking endpoint (handles non-logged-in bookings)
 app.post('/api/book', async (req, res) => {
