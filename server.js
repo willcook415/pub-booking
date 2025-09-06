@@ -20,14 +20,22 @@ const allowedOrigins = [
 ];
 
 // Allow localhost and file:// (Origin === null) in dev
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin) return callback(null, true); // allow file://, curl, Postman during dev
-        if (allowedOrigins.includes(origin)) return callback(null, true);
-        return callback(new Error('Not allowed by CORS'));
+const corsOptions = {
+    origin(origin, cb) {
+        if (!origin) return cb(null, true); // allow curl/Postman/file:// during dev
+        return cb(null, allowedOrigins.includes(origin));
     },
     credentials: true,
-}));
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 204
+};
+
+// ⬇️ mount BEFORE routes
+app.use(cors(corsOptions));
+// explicitly handle preflight for every path
+app.options('*', cors(corsOptions));
+app.get('/api/ping', (_req, res) => res.json({ ok: true, ts: Date.now() }));
 
 app.use(bodyParser.json());
 // app.use(express.static('public'));
