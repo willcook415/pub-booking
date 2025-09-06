@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://thecuriouscatpub.com/</loc></url>
-  <url><loc>https://thecuriouscatpub.com/about.html</loc></url>
-  <url><loc>https://thecuriouscatpub.com/menus.html</loc></url>
-  <url><loc>https://thecuriouscatpub.com/function-room.html</loc></url>
-  <url><loc>https://thecuriouscatpub.com/gallery.html</loc></url>
-  <url><loc>https://thecuriouscatpub.com/booking.html</loc></url>
+  <url><loc>https://thecuriouscatpub.com/about</loc></url>
+  <url><loc>https://thecuriouscatpub.com/menus</loc></url>
+  <url><loc>https://thecuriouscatpub.com/function-room</loc></url>
+  <url><loc>https://thecuriouscatpub.com/gallery</loc></url>
+  <url><loc>https://thecuriouscatpub.com/booking</loc></url>
   <!-- PDFs -->
   <url><loc>https://thecuriouscatpub.com/menus/standard-menu.pdf</loc></url>
   <url><loc>https://thecuriouscatpub.com/menus/sunday-menu.pdf</loc></url>
