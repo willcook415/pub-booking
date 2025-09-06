@@ -1,4 +1,5 @@
 ﻿require('dotenv').config();
+const SEND_EMAILS = process.env.SEND_EMAILS !== 'false';
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -98,53 +99,32 @@ app.post('/api/book', async (req, res) => {
             specialRequests
         });
 
-        // --- Try email, but don't fail the whole request if it errors ---
         let emailSent = false;
-        try {
-            const msg = {
-                to: email,
-                from: process.env.FROM_EMAIL, // must be a verified sender in SendGrid
-                subject: `Booking Confirmation - The Curious Cat Pub`,
-                text: `Hi ${name},
-
-Thank you for your booking at The Curious Cat Pub! Here are your details:
-
-Date: ${date}
-Time: ${time}
-Party Size: ${partySize}
-Special Requests: ${specialRequests || 'None'}
-
-We look forward to seeing you!
-
-Cheers,
-The Curious Cat Pub Team`,
-                html: `<p>Hi ${name},</p>
-               <p>Thank you for your booking at <strong>The Curious Cat Pub</strong>! Here are your details:</p>
-               <ul>
-                 <li><strong>Date:</strong> ${date}</li>
-                 <li><strong>Time:</strong> ${time}</li>
-                 <li><strong>Party Size:</strong> ${partySize}</li>
-                 <li><strong>Special Requests:</strong> ${specialRequests || 'None'}</li>
-               </ul>
-               <p>We look forward to seeing you!</p>
-               <p>Cheers,<br>The Curious Cat Pub Team</p>`
-            };
-            await sgMail.send(msg);
-            emailSent = true;
-            console.log('✅ Confirmation email sent.');
-        } catch (mailErr) {
-            // Log detailed error but DO NOT fail the booking
-            const details = mailErr?.response?.body || mailErr?.message || String(mailErr);
-            console.error('❌ SendGrid error (booking saved):', details);
+        if (SEND_EMAILS) {
+            try {
+                const msg = {
+                    to: email,
+                    from: process.env.FROM_EMAIL, // verified sender in SendGrid
+                    subject: 'Booking Confirmation - The Curious Cat Pub',
+                    text: `Hi ${name} ...`, // your text
+                    html: `<p>Hi ${name} ...</p>` // your html
+                };
+                await sgMail.send(msg);
+                emailSent = true;
+                console.log('✅ Confirmation email sent.');
+            } catch (mailErr) {
+                console.error('❌ SendGrid error (booking saved):', mailErr?.response?.body || mailErr?.message || String(mailErr));
+            }
+        } else {
+            console.log('✉️ Emails disabled via SEND_EMAILS=false');
         }
 
         return res.status(201).json({
-            message: emailSent
-                ? 'Booking successful and confirmation email sent!'
-                : 'Booking successful. Email could not be sent, but your booking is confirmed.',
-            booking: created,
+            message: emailSent ? 'Booking successful and confirmation email sent!' : 'Booking successful. (Email not sent)',
             emailSent
         });
+
+
 
     } catch (error) {
         console.error('❌ Booking failed before save:', error?.message || error);
