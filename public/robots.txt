@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.thecuriouscatpub.com/sitemap.xml
+Sitemap: https://thecuriouscatpub.com/sitemap.xml

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.thecuriouscatpub.com/</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/about.html</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/menus.html</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/function-room.html</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/gallery.html</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/booking.html</loc></url>
-
+  <url><loc>https://thecuriouscatpub.com/</loc></url>
+  <url><loc>https://thecuriouscatpub.com/about.html</loc></url>
+  <url><loc>https://thecuriouscatpub.com/menus.html</loc></url>
+  <url><loc>https://thecuriouscatpub.com/function-room.html</loc></url>
+  <url><loc>https://thecuriouscatpub.com/gallery.html</loc></url>
+  <url><loc>https://thecuriouscatpub.com/booking.html</loc></url>
   <!-- PDFs -->
-  <url><loc>https://www.thecuriouscatpub.com/menus/standard-menu.pdf</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/menus/sunday-menu.pdf</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/menus/kids-menu.pdf</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/Function%20Room%20Hire%202025.pdf</loc></url>
-  <url><loc>https://www.thecuriouscatpub.com/Wake2025.pdf</loc></url>
+  <url><loc>https://thecuriouscatpub.com/menus/standard-menu.pdf</loc></url>
+  <url><loc>https://thecuriouscatpub.com/menus/sunday-menu.pdf</loc></url>
+  <url><loc>https://thecuriouscatpub.com/menus/kids-menu.pdf</loc></url>
+  <url><loc>https://thecuriouscatpub.com/Function%20Room%20Hire%202025.pdf</loc></url>
+  <url><loc>https://thecuriouscatpub.com/Wake2025.pdf</loc></url>
 </urlset>
