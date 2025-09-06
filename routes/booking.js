@@ -5,6 +5,51 @@ const router = express.Router();
 const { Booking } = require('../models');
 const authenticateToken = require('../middleware/auth');
 
+const CAPACITY_PER_SLOT = Number(process.env.CAPACITY_PER_SLOT || 24);
+const SLOT_LENGTH_MIN = 15;
+const BOOKING_DURATION_MIN = 180;
+const SLOTS_PER_BOOKING = BOOKING_DURATION_MIN / SLOT_LENGTH_MIN;
+
+const ALLOWED_TIMES = [
+    "11:00", "11:15", "11:30", "11:45",
+    "12:00", "12:15", "12:30", "12:45",
+    "13:00", "13:15", "13:30", "13:45",
+    "14:00", "14:15", "14:30", "14:45",
+    "15:00", "15:15", "15:30", "15:45",
+    "16:00", "16:15", "16:30", "16:45",
+    "17:00", "17:15", "17:30", "17:45",
+    "18:00", "18:15", "18:30", "18:45",
+    "19:00", "19:15", "19:30", "19:45",
+    "20:00", "20:15", "20:30", "20:45",
+    "21:00"
+];
+
+function slotsCoveredBy(start, times = ALLOWED_TIMES) {
+    const idx = times.indexOf(start);
+    if (idx < 0) return [];
+    return times.slice(idx, idx + SLOTS_PER_BOOKING);
+}
+
+async function wouldExceedCapacity({ date, time, partySize, excludeId = null }) {
+    const sameDay = await Booking.findAll({ where: { date } });
+    const load = Object.fromEntries(ALLOWED_TIMES.map(t => [t, 0]));
+
+    for (const b of sameDay) {
+        if (excludeId && b.id === Number(excludeId)) continue;
+        for (const s of slotsCoveredBy(b.time)) {
+            load[s] += Number(b.partySize || 0);
+        }
+    }
+    for (const s of slotsCoveredBy(time)) {
+        const after = load[s] + Number(partySize || 0);
+        if (after > CAPACITY_PER_SLOT) {
+            return { exceeds: true, slot: s, load: after, cap: CAPACITY_PER_SLOT };
+        }
+    }
+    return { exceeds: false };
+}
+
+
 // Helper: inline admin guard (kept simple to match current system)
 function ensureAdmin(req, res) {
     if (!req.user || !req.user.isAdmin) {
@@ -23,6 +68,16 @@ router.post('/', authenticateToken, async (req, res) => {
         if (!ensureAdmin(req, res)) return;
 
         const { name, email, date, time, partySize, specialRequests } = req.body;
+
+        // capacity check
+        const cap = await wouldExceedCapacity({
+            date, time, partySize
+        });
+        if (cap.exceeds) {
+            return res.status(409).json({
+                error: `Capacity exceeded at ${cap.slot} (${cap.load}/${cap.cap}). Pick a different time.`
+            });
+        }
 
         const created = await Booking.create({
             name,
@@ -80,7 +135,25 @@ router.put('/:id', authenticateToken, async (req, res) => {
         const booking = await Booking.findByPk(req.params.id);
         if (!booking) return res.status(404).json({ error: 'Booking not found' });
 
-        const { name, email, date, time, partySize, specialRequests, arrived } = req.body;
+        const data = req.body;
+
+        const nextDate = data.date ?? booking.date;
+        const nextTime = data.time ?? booking.time;
+        const nextParty = data.partySize ?? booking.partySize;
+
+        const cap = await wouldExceedCapacity({
+            date: nextDate,
+            time: nextTime,
+            partySize: nextParty,
+            excludeId: booking.id
+        });
+        if (cap.exceeds) {
+            return res.status(409).json({
+                error: `Capacity exceeded at ${cap.slot} (${cap.load}/${cap.cap}).`
+            });
+        }
+
+        const { name, email, date, time, partySize, specialRequests, arrived } = data;
 
         if (name !== undefined) booking.name = name;
         if (email !== undefined) booking.email = email;
@@ -96,6 +169,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
         res.status(500).json({ error: 'Failed to update booking', details: err.message });
     }
 });
+
 
 /**
  * Toggle/set arrived (admin)

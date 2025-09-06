@@ -8,6 +8,57 @@ const sgMail = require('@sendgrid/mail');
 const app = express();
 const PORT = process.env.PORT || 10000;
 
+// ---- capacity config ----
+const CAPACITY_PER_SLOT = Number(process.env.CAPACITY_PER_SLOT || 24);
+const SLOT_LENGTH_MIN = 15;
+const BOOKING_DURATION_MIN = 180; // 3 hours
+const SLOTS_PER_BOOKING = BOOKING_DURATION_MIN / SLOT_LENGTH_MIN;
+
+// if you already have ALLOWED_TIMES, re-use it; otherwise:
+const ALLOWED_TIMES = [
+    "11:00", "11:15", "11:30", "11:45",
+    "12:00", "12:15", "12:30", "12:45",
+    "13:00", "13:15", "13:30", "13:45",
+    "14:00", "14:15", "14:30", "14:45",
+    "15:00", "15:15", "15:30", "15:45",
+    "16:00", "16:15", "16:30", "16:45",
+    "17:00", "17:15", "17:30", "17:45",
+    "18:00", "18:15", "18:30", "18:45",
+    "19:00", "19:15", "19:30", "19:45",
+    "20:00", "20:15", "20:30", "20:45",
+    "21:00"
+];
+
+
+function slotsCoveredBy(start, times = ALLOWED_TIMES) {
+    const idx = times.indexOf(start);
+    if (idx < 0) return [];
+    return times.slice(idx, idx + SLOTS_PER_BOOKING); // clamps at array end
+}
+
+async function wouldExceedCapacity({ date, time, partySize }) {
+    const { Booking } = require('./models');
+    const sameDay = await Booking.findAll({ where: { date } });
+
+    // build current loads per slot
+    const load = Object.fromEntries(ALLOWED_TIMES.map(t => [t, 0]));
+    for (const b of sameDay) {
+        for (const s of slotsCoveredBy(b.time)) {
+            load[s] += Number(b.partySize || 0);
+        }
+    }
+
+    // test with the new booking layered in
+    for (const s of slotsCoveredBy(time)) {
+        const after = load[s] + Number(partySize || 0);
+        if (after > CAPACITY_PER_SLOT) {
+            return { exceeds: true, slot: s, load: after, cap: CAPACITY_PER_SLOT };
+        }
+    }
+    return { exceeds: false };
+}
+
+
 // Middleware
 const allowedOrigins = [
     'https://thecuriouscatpub.netlify.app',
@@ -79,22 +130,20 @@ app.post('/api/book', async (req, res) => {
             return res.status(400).json({ message: 'For groups of 9 or more, please call us directly to book.' });
         }
 
-        const allowedTimes = [
-            "11:00", "11:15", "11:30", "11:45",
-            "12:00", "12:15", "12:30", "12:45",
-            "13:00", "13:15", "13:30", "13:45",
-            "14:00", "14:15", "14:30", "14:45",
-            "15:00", "15:15", "15:30", "15:45",
-            "16:00", "16:15", "16:30", "16:45",
-            "17:00", "17:15", "17:30", "17:45",
-            "18:00", "18:15", "18:30", "18:45",
-            "19:00", "19:15", "19:30", "19:45",
-            "20:00", "20:15", "20:30", "20:45",
-            "21:00"
-        ];
-        if (!allowedTimes.includes(time)) {
+        
+        if (!ALLOWED_TIMES.includes(time)) {
             return res.status(400).json({ message: 'Invalid booking time. Please choose a valid slot during opening hours.' });
         }
+
+        // capacity check (3-hour window across 12×15min slots)
+        const cap = await wouldExceedCapacity({ date, time, partySize });
+        if (cap.exceeds) {
+            return res.status(409).json({
+                message: `Capacity exceeded at ${cap.slot} (${cap.load}/${cap.cap}). Please choose another time.`,
+                slot: cap.slot, load: cap.load, capacity: cap.cap
+            });
+        }
+
 
         // --- Save to DB first ---
         const { Booking } = require('./models');
