@@ -113,6 +113,17 @@ app.post('/api/test', (req, res) => {
   res.json({ message: 'Test successful!' });
 });
 
+const closedDaysRouter = require('./routes/closedDays');
+const auth = require('./routes/auth'); // whatever your auth middleware is called
+
+// Public GET is allowed, but POST/DELETE must require admin auth.
+// If your auth middleware attaches req.user + roles, use it here.
+app.use('/api/closed-days', (req, res, next) => {
+    if (req.method === 'GET') return next();
+    // protect others:
+    return auth.verifyToken(req, res, next); // or your equivalent middleware
+}, closedDaysRouter);
+
 const { Booking } = require('./models');
 
 // 📬 Public booking endpoint (handles non-logged-in bookings)

@@ -168,6 +168,18 @@
         gtag('js', new Date());
         gtag('config', 'G-K0RFVME3MC');
     </script>
+    <script>
+        const API_BASE = 'https://pub-booking-backend.onrender.com';
+
+        async function isClosedDate(ymd) {
+            try {
+                const res = await fetch(`${API_BASE}/api/closed-days?from=${ymd}&to=${ymd}`, { cache: 'no-store' });
+                const arr = await res.json();
+                return Array.isArray(arr) && arr.some(r => (r.date || r) === ymd);
+            } catch { return false; }
+        }
+    </script>
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.thecuriouscatpub.com/booking">
     <meta property="og:title" content="The Curious Cat – Modern Country Pub in Herne Bay">
@@ -409,6 +421,31 @@
                     dateInput.value = "";
                 }
             });
+
+            dateInput.addEventListener('change', async () => {
+                const ymd = dateInput.value; // make sure it's YYYY-MM-DD
+                // Clear time options first
+                timeSelect.innerHTML = '';
+                submitBtn.disabled = true;
+
+                if (await isClosedDate(ymd)) {
+                    // show message + keep submit disabled
+                    hint.textContent = 'The pub is closed on this date.';
+                    return;
+                }
+
+                // ...otherwise continue populating times as you do now and enable submit when valid
+            });
+            form.addEventListener('submit', async (e) => {
+                const ymd = dateInput.value;
+                if (await isClosedDate(ymd)) {
+                    e.preventDefault();
+                    showError('The pub is closed on this date.');
+                    return;
+                }
+                // continue with fetch POST …
+            });
+
 
             document.getElementById('bookingForm').addEventListener('submit', async function (e) {
                 e.preventDefault();

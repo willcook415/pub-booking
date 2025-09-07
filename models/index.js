@@ -12,6 +12,9 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
+const ClosedDay = require('./ClosedDay')(sequelize, Sequelize.DataTypes);
+module.exports.ClosedDay = ClosedDay;
+
 const db = {};
 
 db.Sequelize = Sequelize;

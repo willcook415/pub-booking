@@ -4,6 +4,7 @@ const router = express.Router();
 
 const { Booking } = require('../models');
 const authenticateToken = require('../middleware/auth');
+const { ClosedDay } = require('../models');
 
 const CAPACITY_PER_SLOT = Number(process.env.CAPACITY_PER_SLOT || 24);
 const SLOT_LENGTH_MIN = 15;
@@ -77,6 +78,12 @@ router.post('/', authenticateToken, async (req, res) => {
             return res.status(409).json({
                 error: `Capacity exceeded at ${cap.slot} (${cap.load}/${cap.cap}). Pick a different time.`
             });
+        }
+
+        const pickedDate = req.body.date; // expecting YYYY-MM-DD
+        const isClosed = await ClosedDay.findOne({ where: { date: pickedDate } });
+        if (isClosed) {
+            return res.status(409).json({ error: 'CLOSED_DAY', message: 'The pub is closed on this date.' });
         }
 
         const created = await Booking.create({
