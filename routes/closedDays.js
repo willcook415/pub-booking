@@ -8,16 +8,14 @@ router.get('/', async (req, res) => {
     try {
         const { from, to } = req.query;
         const where = {};
-        if (from) where.date = { ...(where.date || {}), $gte: from };
-        if (to) where.date = { ...(where.date || {}), $lte: to };
-        // Using Sequelize v6 operators:
-        if (from || to) {
-            const { Op } = require('sequelize');
-            where.date = {
-                ...(from ? { [Op.gte]: from } : {}),
-                ...(to ? { [Op.lte]: to } : {}),
-            };
-        }
+        const { Op } = require('sequelize');
+         if (from || to) {
+               where.date = {
+                     ...(from ? { [Op.gte]: from } : {}),
+         ...(to ? { [Op.lte]: to } : {}),
+       };
+ }
+
         const rows = await ClosedDay.findAll({ where, order: [['date', 'ASC']] });
         res.json(rows.map(r => ({ date: r.date, note: r.note })));
     } catch (e) {

@@ -12,9 +12,6 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false,
 });
 
-const ClosedDay = require('./ClosedDay')(sequelize, Sequelize.DataTypes);
-module.exports.ClosedDay = ClosedDay;
-
 const db = {};
 
 db.Sequelize = Sequelize;
@@ -22,5 +19,6 @@ db.sequelize = sequelize;
 
 db.User = require('./user')(sequelize, DataTypes);
 db.Booking = require('./booking')(sequelize, DataTypes);
+db.ClosedDay = require('./ClosedDay')(sequelize, DataTypes)
 
 module.exports = db;
