@@ -1,24 +1,18 @@
+// config/config.js
 require('dotenv').config();
 
+const common = {
+    dialect: 'postgres',
+    logging: false,
+    dialectOptions: {
+        ssl: { require: true, rejectUnauthorized: false }
+    },
+    migrationStorage: 'sequelize',
+    seederStorage: 'sequelize'
+};
+
 module.exports = {
-  development: {
-    url: process.env.DATABASE_URL,
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false // this is okay for development; for production you should validate the cert
-      }
-    }
-  },
-  production: {
-    url: process.env.DATABASE_URL,
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    }
-  }
+    development: { url: process.env.DATABASE_URL, ...common },
+    test: { url: process.env.DATABASE_URL, ...common },
+    production: { url: process.env.DATABASE_URL, ...common }
 };

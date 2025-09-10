@@ -2,7 +2,6 @@
 const SEND_EMAILS = process.env.SEND_EMAILS !== 'false';
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 
 const app = express();
@@ -86,9 +85,14 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // explicitly handle preflight for every path
 app.options('*', cors(corsOptions));
+
+app.get('/api/health', (req, res) => {
+    res.json({ ok: true, uptime: process.uptime() });
+});
+
 app.get('/api/ping', (_req, res) => res.json({ ok: true, ts: Date.now() }));
 
-app.use(bodyParser.json());
+app.use(express.json());
 // app.use(express.static('public'));
 
 // Set SendGrid API Key
