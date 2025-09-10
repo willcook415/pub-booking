@@ -1,1 +1,6 @@
-/*.html   /:splat   301!
+http://thecuriouscatpub.com/*     https://thecuriouscatpub.com/:splat     301!
+
+http://www.thecuriouscatpub.com/*  https://thecuriouscatpub.com/:splat     301!
+https://www.thecuriouscatpub.com/* https://thecuriouscatpub.com/:splat     301!
+
+/*.html                                /:splat                               301!
