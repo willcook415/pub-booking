@@ -53,7 +53,7 @@ async function wouldExceedCapacity({ date, time, partySize, excludeId = null }) 
 
 // Helper: inline admin guard (kept simple to match current system)
 function ensureAdmin(req, res) {
-    if (!req.user || !req.user.isAdmin) {
+    if (!req.user || req.user.role !== 'admin') {
         res.status(403).json({ error: 'Access denied – admin only' });
         return false;
     }
