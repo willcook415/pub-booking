@@ -145,6 +145,35 @@
         </ul>
     </nav>
 
+    <!-- Ownership Transfer Notice -->
+    <div id="ownership-banner" class="ownership-banner" role="region" aria-label="Ownership transfer notice">
+        <div class="ownership-inner">
+            <div class="ownership-text">
+                <strong>Notice for New Ownership</strong>
+                <span>
+                    This website and associated services are currently under transition.
+                    The domain, website, and booking system are maintained by the former Digital Systems team of The Curious Cat.
+                    If you are the new owner, please contact
+                    <a id="ownership-email" href="mailto:digitalsystems@curcat.anonaddy.com" rel="nofollow">
+                        digitalsystems@curcat.anonaddy.com
+                    </a>
+                    to arrange transfer of access and administration.
+                    <br />
+                    <strong>Note:</strong> This domain will expire on <strong>September 3rd, 2026</strong>.
+                </span>
+            </div>
+
+            <div class="ownership-actions">
+                <button id="copyOwnershipEmail" class="btn-ghost" type="button" aria-label="Copy contact email">
+                    Copy email
+                </button>
+                <button id="dismissOwnershipBanner" class="btn-ghost" type="button" aria-label="Dismiss notice">
+                    Dismiss
+                </button>
+            </div>
+        </div>
+    </div>
+
     <section class="hero-section">
         <h1>Our Menus</h1>
         <p>From comforting pub classics to Sunday favourites and options for the little ones — there's something for everyone at The Curious Cat.</p>
@@ -295,6 +324,46 @@
             a.classList.toggle('active', href === here || isHome);
         });
     </script>
+    <script>
+        (function () {
+            const KEY = 'ownershipBannerDismissed_v1';
+            const banner = document.getElementById('ownership-banner');
+            const dismissBtn = document.getElementById('dismissOwnershipBanner');
+            const copyBtn = document.getElementById('copyOwnershipEmail');
+            const email = 'digitalsystems@curcat.anonaddy.com';
 
+            // Show only if not previously dismissed
+            try {
+                if (localStorage.getItem(KEY) === 'true') {
+                    banner.style.display = 'none';
+                }
+            } catch (_) { /* localStorage may be blocked; fail open */ }
+
+            // Dismiss
+            dismissBtn?.addEventListener('click', () => {
+                banner.style.display = 'none';
+                try { localStorage.setItem(KEY, 'true'); } catch (_) { }
+            });
+
+            // Copy-to-clipboard with fallback
+            copyBtn?.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(email);
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => (copyBtn.textContent = 'Copy email'), 1800);
+                } catch (err) {
+                    // Fallback: create a temp input
+                    const i = document.createElement('input');
+                    i.value = email;
+                    document.body.appendChild(i);
+                    i.select();
+                    document.execCommand('copy');
+                    i.remove();
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => (copyBtn.textContent = 'Copy email'), 1800);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
