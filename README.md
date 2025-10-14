@@ -104,7 +104,6 @@ The backend will start on [http://localhost:5000](http://localhost:5000)
 ## 🔗 Related Repositories
 
 - **Admin Dashboard:** [pub-admin-dashboard](https://github.com/willcook415/pub-admin-dashboard)
-- **Frontend Website:** [The Curious Cat Website](https://github.com/willcook415/the-curious-cat)
 
 ---
 
